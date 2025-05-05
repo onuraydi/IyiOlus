@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IyiOlus.Core\IyiOlus.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OWBAlgorithm">
+      <HintPath>..\OWBAlgorithm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
