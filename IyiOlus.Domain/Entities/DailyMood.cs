@@ -13,6 +13,7 @@ namespace IyiOlus.Domain.Entities
         public Guid DailyMoodId { get; set; }
         public Mood Mood { get; set; }
         public DateTime Date { get; set; }
-        public virtual ICollection<User> Users { get; set; } = default!;
+        public Guid UserId { get; set; }
+        public User User { get; set; } = default!;
     }
 }
