@@ -13,6 +13,7 @@ namespace IyiOlus.Domain.Entities
         public string Subject { get; set; } = default!;
         public string Message { get; set; } = default!;
         public bool isRead { get; set; }
-        public virtual ICollection<User> Users { get; set; } = default!;
+        public Guid UserId { get; set; }
+        public User User { get; set; } = default!;
     }
 }

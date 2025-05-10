@@ -14,6 +14,7 @@ namespace IyiOlus.Domain.Entities
         public string Title { get; set; } = default!;
         public string Content { get; set; } = default!;
         public DateTime Date { get; set; }
-        public virtual ICollection<User> Users { get; set; } = default!;
+        public Guid userId { get; set; }
+        public User user { get; set; } = default!;
     }
 }

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace IyiOlus.Domain.Entities
 {
-    public class UserAccountInfo
+    public class UserAccountInfo:Entity<Guid>
     {
+        public Guid UserAccountInfoId { get; set; }
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
         public bool Status { get; set; }
