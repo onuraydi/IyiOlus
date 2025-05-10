@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace IyiOlus.Domain.Entities
 {
-    public class ProfileType:Entity<Guid>
+    public class Question:Entity<Guid>
     {
+        public Guid QuestionId { get; set; }
+        public string ProfileQuestion { get; set; } = default!;
+        public QuestionTypes QuestionType { get; set; }
         public Guid ProfileTypeId { get; set; }
-        public ProfileTypes Type { get; set; }
-        public virtual ICollection<Question> Questions { get; set; } = default!;
-        public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
+        public ProfileType ProfileType { get; set; } = default!; 
     }
 }

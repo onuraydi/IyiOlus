@@ -11,6 +11,8 @@ namespace IyiOlus.Domain.Entities
     {
         public Guid SettingId { get; set; }
         public TimeSpan NotificationTime { get; set; }
-        public bool isActive { get; set; } 
+        public bool isActive { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; } = default!;
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IyiOlus.Application.Services.Repositories
 {
-    public interface IUserRoleRepository:IAsyncRepository<UserRole,Guid>
+    public interface IQuestionRepository:IAsyncRepository<Question,Guid>
     {
     }
 }

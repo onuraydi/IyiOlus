@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace IyiOlus.Domain.Enums
 {
-    public enum UserRoles
+    public enum QuestionTypes
     {
-        Öğrenci = 1,
-        Normal = 2,
-        Misafir = 3,
-        Admin = 4,
+        Geçmiş = 1,
+        Şimdi = 2,
+        Gelecek = 3,
     }
 }

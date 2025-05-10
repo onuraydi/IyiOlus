@@ -14,5 +14,7 @@ namespace IyiOlus.Domain.Entities
         public string Password { get; set; } = default!;
         public bool Status { get; set; }
         public bool isVerification { get; set; }
+        public Guid UserId { get; set; }
+        public User User { get; set; } = default!;
     }
 }
