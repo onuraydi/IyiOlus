@@ -34,6 +34,12 @@ namespace IyiOlus.Core.Repositories
             bool enableTracking = true,
             CancellationToken cancellationToken = default);
 
+        Task<int> GetCountAsync(
+            Expression<Func<TEntity,bool>>? predicate = null,
+            bool WithDeleted = false,
+            bool enableTracking = true,
+            CancellationToken cancellation = default
+            );
 
         Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 

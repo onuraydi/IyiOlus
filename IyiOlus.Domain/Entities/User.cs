@@ -19,7 +19,6 @@ namespace IyiOlus.Domain.Entities
         public bool Gender { get; set; }   
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
         public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
-        public virtual UserRole UserRole { get; set; } = default!;
         public virtual Setting Setting { get; set; } = default!;
 
         public virtual ICollection<Daily> Dailies { get; set; } = default!;

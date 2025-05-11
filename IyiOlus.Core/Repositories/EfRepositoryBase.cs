@@ -103,6 +103,22 @@ namespace IyiOlus.Core.Repositories
             return await queryable.FirstOrDefaultAsync(predicate, cancellationToken);
         }
 
+        public async Task<int> GetCountAsync(Expression<Func<TEntity, bool>>? predicate = null, bool WithDeleted = false, bool enableTracking = true, CancellationToken cancellation = default)
+        {
+            IQueryable<TEntity> queryable = context.Set<TEntity>();
+
+            if (!enableTracking)
+                queryable = queryable.AsNoTracking();
+
+            if (!WithDeleted)
+                queryable = queryable.Where(x => x.DeletedDate == null);
+
+            if (predicate != null)
+                queryable = queryable.Where(predicate);
+
+            return await queryable.CountAsync(cancellation);
+        }
+
         public async Task<Paginate<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, int index = 0, int size = 10, bool withDeleted = false, bool enableTracking = true, CancellationToken cancellationToken = default)
         {
             IQueryable<TEntity> queryable = context.Set<TEntity>();
