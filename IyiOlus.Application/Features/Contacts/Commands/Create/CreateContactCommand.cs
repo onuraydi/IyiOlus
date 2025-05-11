@@ -43,7 +43,7 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Create
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamMessages(command.Request.Message);
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamSubject(command.Request.Subject);
 
-                await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(command.Request.User);
+                //await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(command.Request.User);
 
                 var contact = _mapper.Map<Contact>(command.Request);
                 var createdContact = await _contactRepository.AddAsync(contact);

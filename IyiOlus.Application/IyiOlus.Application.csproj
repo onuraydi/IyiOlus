@@ -17,4 +17,8 @@
     <ProjectReference Include="..\IyiOlus.Domain\IyiOlus.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\ProfileTypes\Queries\GetByList\" />
+  </ItemGroup>
+
 </Project>
