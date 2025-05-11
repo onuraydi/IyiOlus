@@ -33,7 +33,8 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetById
                 await _contactBusinessRules.MessageNotFound(request.id);
 
                 var contact = await _contactRepository.GetAsync(c => c.ContactId == request.id);
-                return _mapper.Map<ContactResponse>(contact);
+                var response = _mapper.Map<ContactResponse>(contact);
+                return response;
             }
         }
     }
