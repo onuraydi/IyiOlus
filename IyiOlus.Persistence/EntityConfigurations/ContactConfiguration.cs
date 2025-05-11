@@ -19,7 +19,7 @@ namespace IyiOlus.Persistence.EntityConfigurations
 
             builder.Property(c => c.Message).IsRequired().HasMaxLength(1000);
 
-            builder.Property(c => c.isRead).IsRequired();
+            builder.Property(c => c.isRead).IsRequired().HasDefaultValue(false);
 
             builder.HasOne(u => u.User)
                 .WithMany(c => c.Contacts)

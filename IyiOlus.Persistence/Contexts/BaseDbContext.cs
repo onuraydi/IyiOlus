@@ -24,7 +24,6 @@ namespace IyiOlus.Persistence.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<UserAccountInfo> UserAccountInfos { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Question> Questions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
