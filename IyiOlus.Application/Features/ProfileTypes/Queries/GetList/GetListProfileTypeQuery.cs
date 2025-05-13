@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IyiOlus.Application.Features.ProfileTypes.Queries.GetByList
+namespace IyiOlus.Application.Features.ProfileTypes.Queries.GetList
 {
     public class GetListProfileTypeQuery:IRequest<ProfileTypeResponse>
     {

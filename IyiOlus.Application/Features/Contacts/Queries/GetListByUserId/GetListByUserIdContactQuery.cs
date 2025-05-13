@@ -12,24 +12,24 @@ using System.Threading.Tasks;
 
 namespace IyiOlus.Application.Features.Contacts.Queries.GetListByUserId
 {
-    public class GetListByUserIdQuery:IRequest<Paginate<ContactResponse>>
+    public class GetListByUserIdContactQuery:IRequest<Paginate<ContactResponse>>
     {
         public Guid UserId { get; set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
 
-        public class GetListByUserIdQueryHandler : IRequestHandler<GetListByUserIdQuery, Paginate<ContactResponse>>
+        public class GetListByUserIdContactQueryHandler : IRequestHandler<GetListByUserIdContactQuery, Paginate<ContactResponse>>
         {
             private readonly IContactRepository _contactRepository;
             private readonly IMapper _mapper;
 
-            public GetListByUserIdQueryHandler(IContactRepository contactRepository, IMapper mapper)
+            public GetListByUserIdContactQueryHandler(IContactRepository contactRepository, IMapper mapper)
             {
                 _contactRepository = contactRepository;
                 _mapper = mapper;
             }
 
-            public async Task<Paginate<ContactResponse>> Handle(GetListByUserIdQuery request, CancellationToken cancellationToken)
+            public async Task<Paginate<ContactResponse>> Handle(GetListByUserIdContactQuery request, CancellationToken cancellationToken)
             {
                 var contacts = await _contactRepository.GetListAsync(
                         predicate: u => u.UserId == request.UserId,

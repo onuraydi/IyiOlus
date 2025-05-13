@@ -27,7 +27,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Rules
                 throw new Exception(ProfileTypeMessages.ProfileTypeNotFound);
         }
 
-
+        // Burada bir hata olabilir.
         public async Task ProfileTypeCountCannotBeGraterThanThree(PT profileType)
         {
             var profileTypeCount = await _profileTypeRepository.GetCountAsync(pt => pt.Type == profileType);
