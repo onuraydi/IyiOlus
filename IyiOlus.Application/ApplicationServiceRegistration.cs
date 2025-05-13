@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IyiOlus.Application.Services
+namespace IyiOlus.Application
 {
     public static class ApplicationServiceRegistration
     {
