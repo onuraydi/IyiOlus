@@ -17,4 +17,16 @@
     <ProjectReference Include="..\IyiOlus.Domain\IyiOlus.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\UserProfiles\Commands\" />
+    <Folder Include="Features\UserProfiles\Profiles\" />
+    <Folder Include="Features\UserProfiles\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OWBAlgorithm">
+      <HintPath>..\OWBAlgorithm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
