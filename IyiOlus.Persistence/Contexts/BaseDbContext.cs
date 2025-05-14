@@ -17,7 +17,6 @@ namespace IyiOlus.Persistence.Contexts
         }
 
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Daily> Dailies { get; set; }
         public DbSet<DailyMood> DailyMoods { get; set; }
         public DbSet<ProfileType> ProfileTypes { get;set; }
         public DbSet<Setting> Settings { get; set; }

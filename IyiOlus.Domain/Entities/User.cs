@@ -21,7 +21,6 @@ namespace IyiOlus.Domain.Entities
         public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
         public virtual Setting Setting { get; set; } = default!;
 
-        public virtual ICollection<Daily> Dailies { get; set; } = default!;
         public virtual ICollection<DailyMood> DailyMoods { get; set; } = default!;
         public virtual ICollection<Contact> Contacts { get; set; } = default!;
         public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
