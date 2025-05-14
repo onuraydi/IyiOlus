@@ -15,7 +15,6 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
         public bool State { get; set; }  // önceki profile göre iyileşme olup olmadığı
         public DateTime ProfileTestDate { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
         public string Message { get; set; } = default!;
         //public Guid UserId { get; set; }
         //public User User { get; set; } = default!;
