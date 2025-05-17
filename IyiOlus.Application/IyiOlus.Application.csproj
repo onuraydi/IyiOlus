@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IyiOlus.Core\IyiOlus.Core.csproj" />
     <ProjectReference Include="..\IyiOlus.Domain\IyiOlus.Domain.csproj" />
   </ItemGroup>
 

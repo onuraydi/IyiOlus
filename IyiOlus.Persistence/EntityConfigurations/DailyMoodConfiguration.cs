@@ -13,17 +13,19 @@ namespace IyiOlus.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<DailyMood> builder)
         {
-            //builder.ToTable("");
+            builder.Property(d => d.Mood)
+                .IsRequired();
 
-            builder.Property(d => d.Mood).IsRequired();
-            builder.Property(d => d.Date).IsRequired();
-            
-            // budara date ve userId değeri uniqe olacak yani kullanıcı aynı tarihte birden fazla duygu giremeyecek
-            builder.HasIndex(d => new { d.UserId, d.Date.Date }).IsUnique(); 
-            
-            builder.HasOne(u => u.User)
-                .WithMany(d => d.DailyMoods)
-                .HasForeignKey(u => u.UserId)
+            builder.Property(d => d.Date)
+                .HasColumnType("date")
+                .IsRequired();
+
+            builder.HasIndex(d => new { d.UserId, d.Date })
+                .IsUnique();
+
+            builder.HasOne(d => d.User)
+                .WithMany(u => u.DailyMoods)
+                .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
