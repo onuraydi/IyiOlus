@@ -1,4 +1,5 @@
-﻿using IyiOlus.Domain.Entities;
+﻿using IyiOlus.Application.Features.Users.Dtos.Responses;
+using IyiOlus.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace IyiOlus.Application.Features.Contacts.Dtos.Responses
         public string Message { get; set; } = default!;
         public DateTime CreatedDate { get; set; }
         public string CreatedMessage { get; set; } = default!;
+        public UserResponse UserResponse { get; set; } = default!;
+        public Guid UserResponseId { get; set; }
     }
 }

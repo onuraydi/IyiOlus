@@ -15,13 +15,14 @@ namespace IyiOlus.Application.Features.Users.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<UserResponse, User>();
-            CreateMap<CreatedUserResponse, User>();
-            CreateMap<UpdatedUserResponse, User>();
-            CreateMap<DeletedUserResponse, User>();
+            CreateMap<User, UserResponse>()
+                .ForMember(dest => dest.UserAccountResponse, opt => opt.MapFrom(src => src.UserAccountInfo));
+            CreateMap<CreatedUserResponse, User>().ReverseMap();
+            CreateMap<UpdatedUserResponse, User>().ReverseMap();
+            CreateMap<DeletedUserResponse, User>().ReverseMap();
 
-            CreateMap<User, CreateUserRequest>();
-            CreateMap<User, UpdateUserRequest>();
+            CreateMap<User, CreateUserRequest>().ReverseMap();
+            CreateMap<User, UpdateUserRequest>().ReverseMap();
 
             CreateMap<Paginate<User>, Paginate<UserResponse>>()
                 .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));

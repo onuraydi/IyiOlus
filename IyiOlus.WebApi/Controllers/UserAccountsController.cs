@@ -12,7 +12,7 @@ namespace IyiOlus.WebApi.Controllers
     [ApiController]
     public class UserAccountsController : BaseController
     {
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody]CreateUserAccountCommand createUserAccountCommand)
         {
             var result = await Mediator.Send(createUserAccountCommand);

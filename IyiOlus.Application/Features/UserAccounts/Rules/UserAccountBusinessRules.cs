@@ -20,7 +20,7 @@ namespace IyiOlus.Application.Features.UserAccounts.Rules
 
         public async Task UserAccountNotFound(Guid userAccountId)
         {
-            var result = await _userAccountInfoRepository.AnyAsync(ua => ua.UserAccountInfoId == userAccountId);
+            var result = await _userAccountInfoRepository.AnyAsync(ua => ua.Id == userAccountId);
             if (!result)
                 throw new Exception(UserAccountMessages.UserAccountNotFound);
         }

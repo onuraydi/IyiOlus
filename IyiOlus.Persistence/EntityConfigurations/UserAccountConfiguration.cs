@@ -24,7 +24,7 @@ namespace IyiOlus.Persistence.EntityConfigurations
 
             builder.HasOne(u => u.User)
                 .WithOne(ua => ua.UserAccountInfo)
-                .HasForeignKey<User>(u => u.UserId)  // Bu kısım değişebilir.
+                .HasForeignKey<User>(u => u.UserAccountInfoId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

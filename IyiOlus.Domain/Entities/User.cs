@@ -10,7 +10,6 @@ namespace IyiOlus.Domain.Entities
 {
     public class User:Entity<Guid>
     {
-        public Guid UserId { get; set; }
         public string Name { get; set; } = default!;
         public string Surname { get; set; } = default!;
         public DateTime DateOfBirth { get; set; }
@@ -19,6 +18,7 @@ namespace IyiOlus.Domain.Entities
         public bool Gender { get; set; }   
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
         public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
+        public Guid UserAccountInfoId { get; set; }
         public virtual Setting Setting { get; set; } = default!;
 
         public virtual ICollection<DailyMood> DailyMoods { get; set; } = default!;

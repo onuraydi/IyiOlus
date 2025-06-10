@@ -19,7 +19,7 @@ namespace IyiOlus.Application.Features.DailyMoods.Rules
 
         public async Task DailyMoodNotFound(Guid dailyMoodId)
         {
-            var result = await _dailyMoodRepository.AnyAsync(dm => dm.DailyMoodId == dailyMoodId);
+            var result = await _dailyMoodRepository.AnyAsync(dm => dm.Id == dailyMoodId);
             if (!result)
                 throw new Exception(DailyMoodMessages.DailyMoodNotFound);
         }

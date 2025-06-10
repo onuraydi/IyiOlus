@@ -31,7 +31,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Queries.GetById
             {
                 await _userProfileBusinessRules.UserProfileNotFound(request.UserProfileId);
 
-                var userProfile = await _userProfileRepository.GetAsync(up => up.UserProfileId == request.UserProfileId);
+                var userProfile = await _userProfileRepository.GetAsync(up => up.Id == request.UserProfileId);
 
                 var response = _mapper.Map<UserProfileResponse>(userProfile);
                 return response;

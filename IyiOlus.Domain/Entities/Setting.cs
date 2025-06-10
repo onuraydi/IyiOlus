@@ -9,7 +9,6 @@ namespace IyiOlus.Domain.Entities
 {
     public class Setting:Entity<Guid>
     {
-        public Guid SettingId { get; set; }
         public TimeSpan NotificationTime { get; set; }
         public bool isActive { get; set; }
         public Guid UserId { get; set; }

@@ -4,6 +4,7 @@ using IyiOlus.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IyiOlus.Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250610065905_updatedMigration")]
+    partial class updatedMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,7 +190,6 @@ namespace IyiOlus.Persistence.Migrations
             modelBuilder.Entity("IyiOlus.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedDate")
@@ -221,16 +223,10 @@ namespace IyiOlus.Persistence.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("UserAccountInfoId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("WorkState")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserAccountInfoId")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -264,6 +260,9 @@ namespace IyiOlus.Persistence.Migrations
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("isVerification")
                         .ValueGeneratedOnAdd()
@@ -372,7 +371,7 @@ namespace IyiOlus.Persistence.Migrations
                 {
                     b.HasOne("IyiOlus.Domain.Entities.UserAccountInfo", "UserAccountInfo")
                         .WithOne("User")
-                        .HasForeignKey("IyiOlus.Domain.Entities.User", "UserAccountInfoId")
+                        .HasForeignKey("IyiOlus.Domain.Entities.User", "Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -419,7 +418,8 @@ namespace IyiOlus.Persistence.Migrations
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.UserAccountInfo", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("User")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -32,7 +32,7 @@ namespace IyiOlus.Application.Features.Settings.Queries.GetById
             {
                 await _settingBusinessRules.SettingNotFound(request.SettingId);
 
-                var setting = await _settingRepository.GetAsync(s => s.SettingId == request.SettingId);
+                var setting = await _settingRepository.GetAsync(s => s.Id == request.SettingId);
 
                 var response = _mapper.Map<SettingResponse>(setting);
                 return response;

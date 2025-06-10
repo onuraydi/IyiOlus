@@ -24,6 +24,10 @@ namespace IyiOlus.Persistence.EntityConfigurations
             builder.Property(u => u.Relation).IsRequired();
 
             // ilişkiler gerekirse burada da ayarlanacak
+            //builder.HasOne(ua => ua.UserAccountInfo)
+            //    .WithOne(u => u.User)
+            //    .HasForeignKey<UserAccountInfo>(u => u.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace IyiOlus.Application.Features.Questions.Rules
 
         public async Task QuestionNotFound(Guid questionId)
         {
-            var result = await _questionRepository.AnyAsync(q => q.QuestionId == questionId);
+            var result = await _questionRepository.AnyAsync(q => q.Id == questionId);
             if (!result)
                 throw new Exception(QuestionMessages.QuestionNotFound);
         }

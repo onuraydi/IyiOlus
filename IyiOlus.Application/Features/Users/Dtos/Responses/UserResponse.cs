@@ -1,4 +1,5 @@
-﻿using IyiOlus.Domain.Enums;
+﻿using IyiOlus.Application.Features.UserAccounts.Dtos.Responses;
+using IyiOlus.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace IyiOlus.Application.Features.Users.Dtos.Responses
 {
     public class UserResponse
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = default!;
         public string Surname { get; set; } = default!;
         public DateTime DateOfBirth { get; set; }
@@ -19,6 +20,7 @@ namespace IyiOlus.Application.Features.Users.Dtos.Responses
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public virtual UserAccountResponse UserAccountResponse { get; set; } = default!;
 
         //public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
         //public virtual Setting Setting { get; set; } = default!;

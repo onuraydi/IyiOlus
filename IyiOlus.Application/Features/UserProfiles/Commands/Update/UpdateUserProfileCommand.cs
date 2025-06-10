@@ -36,7 +36,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
                 await _userProfileBusinessRules.UserProfileNotPossible();
                 //await _userProfileBusinessRules.UserProfileBlock(command.Request.UserId, command.Request.ProfileTestDate);
 
-                var userProfile = await _userProfileRepository.GetAsync(up => up.UserProfileId == command.Request.UserProfileId);
+                var userProfile = await _userProfileRepository.GetAsync(up => up.Id == command.Request.UserProfileId);
 
                 var updatedUserProfile = await _userProfileRepository.UpdateAsync(userProfile);
 

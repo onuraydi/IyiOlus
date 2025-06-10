@@ -31,7 +31,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Delete
             {
                 await _userProfileBusinessRules.UserProfileNotFound(request.userProfileId);
 
-                var userProfile = await _userProfileRepository.GetAsync(up => up.UserProfileId == request.userProfileId);
+                var userProfile = await _userProfileRepository.GetAsync(up => up.Id == request.userProfileId);
 
                 if(userProfile != null)
                     await _userProfileRepository.DeleteAsync(userProfile);

@@ -10,7 +10,7 @@ namespace IyiOlus.Application.Features.Users.Dtos.Requests
 {
     public class UpdateUserRequest
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; } = default!;
         public string Surname { get; set; } = default!;
         public DateTime DateOfBirth { get; set; }

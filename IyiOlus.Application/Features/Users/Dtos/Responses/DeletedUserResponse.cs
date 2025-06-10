@@ -10,7 +10,7 @@ namespace IyiOlus.Application.Features.Users.Dtos.Responses
 {
     public class DeletedUserResponse
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; } = default!;
     }
 }

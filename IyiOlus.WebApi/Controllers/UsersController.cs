@@ -3,7 +3,6 @@ using IyiOlus.Application.Features.Users.Commands.Delete;
 using IyiOlus.Application.Features.Users.Commands.Update;
 using IyiOlus.Application.Features.Users.Queries.GetById;
 using IyiOlus.Application.Features.Users.Queries.GetList;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IyiOlus.WebApi.Controllers

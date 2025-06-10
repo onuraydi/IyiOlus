@@ -9,7 +9,7 @@ namespace IyiOlus.Application.Features.UserAccounts.Dtos.Responses
 {
     public class DeletedUserAccountResponse
     {
-        public Guid UserAccountInfoId { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; } = default!;
     }
 }

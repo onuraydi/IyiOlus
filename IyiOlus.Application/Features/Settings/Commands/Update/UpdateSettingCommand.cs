@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.Settings.Commands.Update
             {
                 await _settingBusinessRules.SettingNotFound(request.SettingId);
 
-                var setting = await _settingRepository.GetAsync(s => s.SettingId == request.SettingId);
+                var setting = await _settingRepository.GetAsync(s => s.Id == request.SettingId);
 
                 var updatedSetting = await _settingRepository.UpdateAsync(setting);
 

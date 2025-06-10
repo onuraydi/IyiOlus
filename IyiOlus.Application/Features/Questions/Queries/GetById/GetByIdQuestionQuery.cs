@@ -32,7 +32,7 @@ namespace IyiOlus.Application.Features.Questions.Queries.GetById
             {
                 await _questionBusinessRules.QuestionNotFound(request.QuestionId);
 
-                var question = await _questionRepository.GetAsync(q => q.QuestionId == request.QuestionId);
+                var question = await _questionRepository.GetAsync(q => q.Id == request.QuestionId);
 
                 var response = _mapper.Map<QuestionResponse>(question);
                 return response;

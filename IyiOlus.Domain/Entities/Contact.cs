@@ -9,7 +9,6 @@ namespace IyiOlus.Domain.Entities
 {
     public class Contact:Entity<Guid>
     {
-        public Guid ContactId { get; set; }
         public string Subject { get; set; } = default!;
         public string Message { get; set; } = default!;
         public bool isRead { get; set; }
