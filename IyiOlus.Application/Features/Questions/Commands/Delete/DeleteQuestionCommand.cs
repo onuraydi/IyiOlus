@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.Questions.Commands.Delete
             {
                 await _questionBusinessRules.QuestionNotFound(request.QuestionId);
 
-                var question = await __questionRepository.GetAsync(q => q.QuestionId == request.QuestionId);
+                var question = await __questionRepository.GetAsync(q => q.Id == request.QuestionId);
                 if(question!= null)
                     await __questionRepository.DeleteAsync(question);
 

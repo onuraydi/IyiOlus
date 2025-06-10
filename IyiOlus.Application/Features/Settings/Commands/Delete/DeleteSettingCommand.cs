@@ -29,7 +29,7 @@ namespace IyiOlus.Application.Features.Settings.Commands.Delete
             public async Task<DeletedSettingResponse> Handle(DeleteSettingCommand request, CancellationToken cancellationToken)
             {
                 await _settingBusinessRules.SettingNotFound(request.SettingId);
-                var setting = await _settingRepository.GetAsync(s => s.SettingId == request.SettingId);
+                var setting = await _settingRepository.GetAsync(s => s.Id == request.SettingId);
 
                 if(setting != null)
                     await _settingRepository.DeleteAsync(setting);

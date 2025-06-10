@@ -22,7 +22,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Rules
 
         public async Task ProfileTypeNotFound(Guid profileTypeId)
         {
-            var result = await _profileTypeRepository.AnyAsync(pt => pt.ProfileTypeId == profileTypeId);
+            var result = await _profileTypeRepository.AnyAsync(pt => pt.Id == profileTypeId);
             if (!result)
                 throw new Exception(ProfileTypeMessages.ProfileTypeNotFound);
         }

@@ -32,11 +32,13 @@ namespace IyiOlus.Application.Features.UserAccounts.Commands.Update
 
             public async Task<UpdatedUserAccountResponse> Handle(UpdateUserAccountCommand command, CancellationToken cancellationToken)
             {
-                await _userAccountBusinessRules.UserAccountNotFound(command.Request.UserAccountInfoId);
+                await _userAccountBusinessRules.UserAccountNotFound(command.Request.Id);
                 _userAccountBusinessRules.UserEmailIsNotValid(command.Request.Email);
                 _userAccountBusinessRules.UserPasswordIsNotValid(command.Request.Password);
 
-                var userAccount = await _userAccountInfoRepository.GetAsync(ua => ua.UserAccountInfoId == command.Request.UserAccountInfoId);
+                var userAccount = await _userAccountInfoRepository.GetAsync(ua => ua.Id == command.Request.Id);
+                _mapper.Map(command.Request, userAccount); // bu satırı diğerleri için de ekle yoksa güncelleme çalışmıyor.
+
                 var updatedUserAccount = await _userAccountInfoRepository.UpdateAsync(userAccount);
 
                 var response = _mapper.Map<UpdatedUserAccountResponse>(updatedUserAccount);

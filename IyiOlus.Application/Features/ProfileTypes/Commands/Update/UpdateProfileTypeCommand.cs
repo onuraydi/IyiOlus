@@ -34,7 +34,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Commands.Update
             {
                 await _profileTypeBusinessRules.ProfileTypeNotFound(command.Request.ProfileTypeId);
 
-                var profileType = await _profileTypeRepository.GetAsync(pt => pt.ProfileTypeId == command.Request.ProfileTypeId);
+                var profileType = await _profileTypeRepository.GetAsync(pt => pt.Id == command.Request.ProfileTypeId);
                 _mapper.Map(command.Request, profileType);
 
                 var updatedProfileType = await _profileTypeRepository.UpdateAsync(profileType);

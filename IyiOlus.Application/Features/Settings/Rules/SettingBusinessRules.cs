@@ -19,7 +19,7 @@ namespace IyiOlus.Application.Features.Settings.Rules
 
         public async Task SettingNotFound(Guid settingId)
         {
-            var result = await _settingRepository.AnyAsync(s => s.SettingId == settingId);
+            var result = await _settingRepository.AnyAsync(s => s.Id == settingId);
             if (!result)
                 throw new Exception(SettingMessages.SettingNotFound);
         }

@@ -34,7 +34,7 @@ namespace IyiOlus.Application.Features.Questions.Commands.Update
             {
                 await _questionBusinessRules.QuestionNotFound(command.Request.QuestionId);
 
-                var question = await _questionRepository.GetAsync(q => q.QuestionId == command.Request.QuestionId);
+                var question = await _questionRepository.GetAsync(q => q.Id == command.Request.QuestionId);
                 _mapper.Map(command.Request, question);
 
                 var updatedQuestion = await _questionRepository.UpdateAsync(question);

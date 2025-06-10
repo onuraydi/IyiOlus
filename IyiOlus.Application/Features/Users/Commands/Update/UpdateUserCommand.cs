@@ -32,14 +32,15 @@ namespace IyiOlus.Application.Features.Users.Commands.Update
 
             public async Task<UpdatedUserResponse> Handle(UpdateUserCommand command, CancellationToken cancellationToken)
             {
-                await _userBusinessRules.UserNotFound(command.Request.UserId);
+                await _userBusinessRules.UserNotFound(command.Request.Id);
                 _userBusinessRules.NameShort(command.Request.Name);
                 _userBusinessRules.NameLong(command.Request.Name);
                 _userBusinessRules.SurnameShort(command.Request.Surname);
                 _userBusinessRules.SurnameLong(command.Request.Surname);
 
-                var user = await _userRepository.GetAsync(u => u.UserId == command.Request.UserId);
-
+                var user = await _userRepository.GetAsync(u => u.Id == command.Request.Id);
+                _mapper.Map(command.Request, user);
+               
                 var updatedUser = await _userRepository.UpdateAsync(user);
 
                 var response = _mapper.Map<UpdatedUserResponse>(updatedUser);

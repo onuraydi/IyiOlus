@@ -19,7 +19,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Rules
 
         public async Task UserProfileNotFound(Guid userProfileId)
         {
-            var result = await _userProfileRepository.AnyAsync(up => up.UserProfileId == userProfileId);
+            var result = await _userProfileRepository.AnyAsync(up => up.Id == userProfileId);
             if (!result)
                 throw new Exception(UserProfileMessages.UserProfileNotFound);
         }

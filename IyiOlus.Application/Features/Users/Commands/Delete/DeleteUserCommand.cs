@@ -30,14 +30,14 @@ namespace IyiOlus.Application.Features.Users.Commands.Delete
             {
                 await _userBusinessRules.UserNotFound(request.UserId);
 
-                var user = await _userRepository.GetAsync(u => u.UserId == request.UserId);
+                var user = await _userRepository.GetAsync(u => u.Id == request.UserId);
 
                 if(user != null)
                     await _userRepository.DeleteAsync(user);
 
                 return new DeletedUserResponse
                 {
-                    UserId = request.UserId,
+                    Id = request.UserId,
                     Message = UserMessages.userDeleted,
                 };
             }

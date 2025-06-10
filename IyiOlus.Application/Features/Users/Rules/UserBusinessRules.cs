@@ -19,7 +19,7 @@ namespace IyiOlus.Application.Features.Users.Rules
 
         public async Task UserNotFound(Guid userId)
         {
-            var result = await _userRepository.AnyAsync(u => u.UserId == userId);
+            var result = await _userRepository.AnyAsync(u => u.Id == userId);
 
             if (!result)
                 throw new Exception(UserMessages.UserNotFound);
@@ -27,25 +27,25 @@ namespace IyiOlus.Application.Features.Users.Rules
 
         public void NameShort(string name)
         {
-            if (name.Count() > 3)
+            if (name.Count() < 3)
                 throw new Exception(UserMessages.nameShort);
         }
 
         public void NameLong(string name)
         {
-            if (name.Count() < 35)
+            if (name.Count() > 35)
                 throw new Exception(UserMessages.nameLong);
         }
 
         public void SurnameShort(string surname)
         {
-            if (surname.Count() > 2)
+            if (surname.Count() < 2)
                 throw new Exception(UserMessages.surnameShort);
         }
 
         public void SurnameLong(string surname)
         {
-            if (surname.Count() < 35)
+            if (surname.Count() > 35)
                 throw new Exception(UserMessages.surnameLong);
         }
     }

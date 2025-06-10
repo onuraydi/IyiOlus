@@ -21,7 +21,7 @@ namespace IyiOlus.Persistence.EntityConfigurations
 
 
             builder.HasIndex(up => new { up.UserId, up.ProfileTypeId }).IsUnique();
-            builder.HasIndex(up => new { up.ProfileTestDate, up.UserProfileId }).IsUnique();
+            builder.HasIndex(up => new { up.ProfileTestDate, up.Id }).IsUnique();
 
             builder.HasOne(u => u.User)
                 .WithMany(up => up.UserProfiles)

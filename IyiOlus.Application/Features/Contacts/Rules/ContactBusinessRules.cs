@@ -20,7 +20,7 @@ namespace IyiOlus.Application.Features.Contacts.Rules
 
         public async Task MessageNotFound(Guid contactId)
         {
-            var result = await _contactRepository.AnyAsync(c => c.ContactId == contactId);
+            var result = await _contactRepository.AnyAsync(c => c.Id == contactId);
             if (!result)
             {
                 throw new Exception(ContactMessages.ContactNotFound);

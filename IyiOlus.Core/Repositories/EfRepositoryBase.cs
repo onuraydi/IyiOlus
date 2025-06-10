@@ -44,7 +44,7 @@ namespace IyiOlus.Core.Repositories
             if (!enableTracking)
                 queryable = queryable.AsNoTracking();
 
-            if (!WithDeleted)
+            if (WithDeleted)
                 queryable = queryable.Where(x => x.DeletedDate == null);
 
             if (predicate != null)
@@ -94,7 +94,7 @@ namespace IyiOlus.Core.Repositories
             if (!enableTracking)
                 queryable = queryable.AsNoTracking();
 
-            if (!withDeleted)
+            if (withDeleted)
                 queryable = queryable.Where(x => x.DeletedDate == null);
 
             if(include != null)
@@ -110,7 +110,7 @@ namespace IyiOlus.Core.Repositories
             if (!enableTracking)
                 queryable = queryable.AsNoTracking();
 
-            if (!WithDeleted)
+            if (WithDeleted)
                 queryable = queryable.Where(x => x.DeletedDate == null);
 
             if (predicate != null)
@@ -125,7 +125,7 @@ namespace IyiOlus.Core.Repositories
 
             if (!enableTracking)
                 queryable = queryable.AsNoTracking();
-            if (!withDeleted)
+            if (withDeleted)
                 queryable = queryable.Where(x => x.DeletedDate == null);
             if (include != null)
                 queryable = include(queryable);

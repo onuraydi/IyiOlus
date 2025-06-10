@@ -29,14 +29,14 @@ namespace IyiOlus.Application.Features.UserAccounts.Commands.Delete
             {
                 await _userAccountBusinessRules.UserAccountNotFound(request.UserAccountId);
 
-                var userAccount = await _userAccountInfoRepository.GetAsync(ua => ua.UserAccountInfoId == request.UserAccountId);
+                var userAccount = await _userAccountInfoRepository.GetAsync(ua => ua.Id == request.UserAccountId);
 
                 if (userAccount != null)
                     await _userAccountInfoRepository.DeleteAsync(userAccount);
 
                 return new DeletedUserAccountResponse
                 {
-                    UserAccountInfoId = request.UserAccountId,
+                    Id = request.UserAccountId,
                     Message = UserAccountMessages.UserAccountDeleted,
                 };
             }

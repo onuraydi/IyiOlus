@@ -35,7 +35,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Commands.Delete
             {
                 await _profileTypeBusinessRules.ProfileTypeNotFound(request.ProfileTypeId);
 
-                var profileType = await _profileTypeRepository.GetAsync(pt => pt.ProfileTypeId == request.ProfileTypeId);
+                var profileType = await _profileTypeRepository.GetAsync(pt => pt.Id == request.ProfileTypeId);
 
                 if (profileType != null)
                     await _profileTypeRepository.DeleteAsync(profileType);

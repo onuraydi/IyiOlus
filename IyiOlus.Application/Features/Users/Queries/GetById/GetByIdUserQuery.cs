@@ -32,7 +32,7 @@ namespace IyiOlus.Application.Features.Users.Queries.GetById
             {
                 await _userBusinessRules.UserNotFound(request.UserId);
 
-                var user = await _userRepository.GetAsync(u => u.UserId == request.UserId);
+                var user = await _userRepository.GetAsync(u => u.Id == request.UserId);
 
                 var response = _mapper.Map<UserResponse>(user);
                 return response;

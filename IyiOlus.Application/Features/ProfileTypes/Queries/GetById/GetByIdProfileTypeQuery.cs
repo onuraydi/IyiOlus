@@ -32,7 +32,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Queries.GetById
             {
                 await _profileTypeBusinessRules.ProfileTypeNotFound(request.ProfileTypeId);
 
-                var profileType = await _profileTypeRepository.GetAsync(pt => pt.ProfileTypeId == request.ProfileTypeId);
+                var profileType = await _profileTypeRepository.GetAsync(pt => pt.Id == request.ProfileTypeId);
 
                 var response = _mapper.Map<ProfileTypeResponse>(profileType);
                 return response;

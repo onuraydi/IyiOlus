@@ -1,4 +1,6 @@
-﻿using IyiOlus.Domain.Entities;
+﻿using IyiOlus.Application.Features.Users.Dtos.Requests;
+using IyiOlus.Application.Features.Users.Dtos.Responses;
+using IyiOlus.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

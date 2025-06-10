@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.DailyMoods.Queries.GetById
             {
                 await _dailyMoodBusinessRules.DailyMoodNotFound(request.DailyMoodId);
 
-                var dailyMood = await _dailyMoodRepository.GetAsync(dm => dm.DailyMoodId == request.DailyMoodId);
+                var dailyMood = await _dailyMoodRepository.GetAsync(dm => dm.Id == request.DailyMoodId);
 
                 var response = _mapper.Map<DailyMoodResponse>(dailyMood);
                 return response;

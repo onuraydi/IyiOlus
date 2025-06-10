@@ -26,7 +26,7 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Delete
 
             public async Task<DeletedContactResponse> Handle(DeleteContactCommand command, CancellationToken cancellationToken)
             {
-                var contact = await _contactRepository.GetAsync(c => c.ContactId == command.id);
+                var contact = await _contactRepository.GetAsync(c => c.Id == command.id);
                 
                 if(contact != null)
                     await _contactRepository.DeleteAsync(contact);

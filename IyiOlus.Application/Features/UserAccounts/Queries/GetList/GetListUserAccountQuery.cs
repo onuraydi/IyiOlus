@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.UserAccounts.Dtos.Responses;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,8 @@ namespace IyiOlus.Application.Features.UserAccounts.Queries.GetList
                 var userAccount = await _userAccountInfoRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
-                        cancellationToken:cancellationToken
+                        include: u => u.Include(x => x.User),
+                        cancellationToken: cancellationToken
                     );
 
                 var response = _mapper.Map<Paginate<UserAccountResponse>>(userAccount);

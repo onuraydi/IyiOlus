@@ -9,7 +9,7 @@ namespace IyiOlus.Application.Features.UserAccounts.Dtos.Requests
 {
     public class UpdateUserAccountRequest
     {
-        public Guid UserAccountInfoId { get; set; }
+        public Guid Id { get; set; }
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
         public bool Status { get; set; }

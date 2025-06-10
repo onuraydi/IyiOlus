@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IyiOlus.Application\IyiOlus.Application.csproj" />
     <ProjectReference Include="..\IyiOlus.Persistence\IyiOlus.Persistence.csproj" />
   </ItemGroup>
 
