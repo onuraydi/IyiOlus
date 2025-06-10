@@ -6,6 +6,7 @@ using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Create
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamMessages(command.Request.Message);
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamSubject(command.Request.Subject);
 
-                //await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(command.Request.User);
+                await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(command.Request.UserId);
 
                 var contact = _mapper.Map<Contact>(command.Request);
                 var createdContact = await _contactRepository.AddAsync(contact);

@@ -58,12 +58,12 @@ namespace IyiOlus.Application.Features.Contacts.Rules
             }
         }
 
-        public async Task TheUserCannotSendExitFrequentMessages(User user)
+        public async Task TheUserCannotSendExitFrequentMessages(Guid user)
         {
             var now = DateTime.UtcNow;
             var tenMinutesAgo = now.AddMinutes(-10);
             var recentMessagesCount = await _contactRepository
-                .GetCountAsync(c => c.UserId == user.Id && c.CreatedDate >= tenMinutesAgo);
+                .GetCountAsync(c => c.UserId == user && c.CreatedDate >= tenMinutesAgo);
 
             if (recentMessagesCount >= 2)
             {

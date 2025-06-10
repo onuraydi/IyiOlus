@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Delete
 
                 return new DeletedContactResponse
                 {
-                    ContactId = command.id,
+                    Id = command.id,
                     Message = ContactMessages.ContactDeleted,
                 };
             }

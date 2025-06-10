@@ -10,14 +10,13 @@ namespace IyiOlus.Application.Features.Contacts.Dtos.Responses
 {
     public class ContactResponse
     {
-        public Guid ContactId { get; set; }
+        public Guid Id { get; set; }
         public string Subject { get; set; } = default!;
         public string Message { get; set; } = default!;
         public bool isRead { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public UserResponse UserResponse { get; set; } = default!;
-        public Guid UserResponseId { get; set; }
+        public virtual UserResponse UserResponse { get; set; } = default!;
 
     }
 }

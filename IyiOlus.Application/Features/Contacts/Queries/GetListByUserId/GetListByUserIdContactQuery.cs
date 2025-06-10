@@ -35,7 +35,7 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetListByUserId
                         predicate: u => u.UserId == request.UserId,
                         index: request.PageIndex,
                         size: request.PageSize,
-                        //include: c => c.Include(x => x.)
+                        include: c => c.Include(x => x.User),
                         cancellationToken: cancellationToken
                     );
 

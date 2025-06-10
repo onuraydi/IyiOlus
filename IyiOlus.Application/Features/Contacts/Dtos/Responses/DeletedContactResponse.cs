@@ -9,7 +9,7 @@ namespace IyiOlus.Application.Features.Contacts.Dtos.Responses
 {
     public class DeletedContactResponse
     {
-        public Guid ContactId { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; } = default!;
     }
 }

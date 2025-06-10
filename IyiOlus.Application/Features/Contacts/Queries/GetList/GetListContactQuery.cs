@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Contacts.Dtos.Responses;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetList
                 var contacts = await _contactRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
+                        include: c => c.Include(x => x.User),
                         cancellationToken: cancellationToken
                     );
 
