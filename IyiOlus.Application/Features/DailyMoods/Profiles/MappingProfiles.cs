@@ -15,7 +15,8 @@ namespace IyiOlus.Application.Features.DailyMoods.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<DailyMood, DailyMoodResponse>();
+            CreateMap<DailyMood, DailyMoodResponse>()
+                .ForMember(dest => dest.UserResponse, opt => opt.MapFrom(src => src.User));
             CreateMap<DailyMood, CreatedDailyMoodResponse>();
 
             CreateMap<CreateDailyMoodRequest, DailyMood>();

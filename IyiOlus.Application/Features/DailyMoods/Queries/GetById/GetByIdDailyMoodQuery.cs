@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.DailyMoods.Dtos.Responses;
 using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Services.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,10 @@ namespace IyiOlus.Application.Features.DailyMoods.Queries.GetById
             {
                 await _dailyMoodBusinessRules.DailyMoodNotFound(request.DailyMoodId);
 
-                var dailyMood = await _dailyMoodRepository.GetAsync(dm => dm.Id == request.DailyMoodId);
+                var dailyMood = await _dailyMoodRepository.GetAsync(
+                    predicate: dm => dm.Id == request.DailyMoodId,
+                    include: x => x.Include(y => y.User),
+                    cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<DailyMoodResponse>(dailyMood);
                 return response;

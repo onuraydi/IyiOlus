@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.DailyMoods.Dtos.Responses;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace IyiOlus.Application.Features.DailyMoods.Queries.GetList
                 var dailyMoods = await _dailyMoodRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
+                        include: x => x.Include(y => y.User),
                         cancellationToken: cancellationToken
                     );
 
