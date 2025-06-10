@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Contacts.Dtos.Responses;
 using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Services.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,11 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetById
             {
                 await _contactBusinessRules.MessageNotFound(request.id);
 
-                var contact = await _contactRepository.GetAsync(c => c.Id == request.id);
+                var contact = await _contactRepository.GetAsync(
+                    predicate: c => c.Id == request.id,
+                    include: c => c.Include(x => x.User),
+                    cancellationToken: cancellationToken);
+
                 var response = _mapper.Map<ContactResponse>(contact);
                 return response;
             }

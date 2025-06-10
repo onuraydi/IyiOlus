@@ -15,8 +15,11 @@ namespace IyiOlus.Application.Features.Contacts.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Contact, ContactResponse>();
-            CreateMap<Contact, CreatedContactResponse>();
+            CreateMap<Contact, ContactResponse>()
+                .ForMember(dest => dest.UserResponse, opt => opt.MapFrom(src => src.User));
+            CreateMap<Contact, CreatedContactResponse>()
+                .ForMember(dest => dest.CreatedMessage, opt => opt.MapFrom(src => src.Message))
+                .ForMember(dest => dest.UserResponse, opt => opt.MapFrom(src => src.User));
             CreateMap<Contact, DeletedContactResponse>();
 
             CreateMap<CreateContactRequest, Contact>();

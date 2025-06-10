@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Users.Dtos.Responses;
 using IyiOlus.Application.Features.Users.Rules;
 using IyiOlus.Application.Services.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,10 @@ namespace IyiOlus.Application.Features.Users.Queries.GetById
             {
                 await _userBusinessRules.UserNotFound(request.UserId);
 
-                var user = await _userRepository.GetAsync(u => u.Id == request.UserId);
+                var user = await _userRepository.GetAsync(
+                    predicate: u => u.Id == request.UserId,
+                    include: u => u.Include(x => x.UserAccountInfo),
+                    cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<UserResponse>(user);
                 return response;
