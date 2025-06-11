@@ -8,7 +8,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
 {
     public class DeletedUserProfileResponse
     {
-        public Guid UserProfileId { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; } = default!;
     }
 }

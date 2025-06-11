@@ -15,7 +15,9 @@ namespace IyiOlus.Application.Features.UserProfiles.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<UserProfile, UserProfileResponse>();
+            CreateMap<UserProfile, UserProfileResponse>()
+                .ForMember(dest => dest.UserResponse, opt => opt.MapFrom(src => src.User))
+                .ForMember(dest => dest.ProfileTypeResponse, opt => opt.MapFrom(src => src.ProfileType));
             CreateMap<UserProfile, CreatedUserProfileResponse>();
             CreateMap<UserProfile, UpdatedUserProfileResponse>();
             CreateMap<UserProfile, DeletedUserProfileResponse>();

@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.UserProfiles.Dtos.Responses;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Queries.GetList
                 var userProfiles = await _userProfileRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
+                        include: x => x.Include(y => y.User).ThenInclude(y => y.UserAccountInfo).Include(y => y.ProfileType),
                         cancellationToken: cancellationToken
                     );
 
