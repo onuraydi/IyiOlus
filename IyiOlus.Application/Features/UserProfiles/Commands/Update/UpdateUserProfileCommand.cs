@@ -32,11 +32,12 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
 
             public async Task<UpdatedUserProfileResponse> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
             {
-                await _userProfileBusinessRules.UserProfileNotFound(command.Request.UserProfileId);
+                await _userProfileBusinessRules.UserProfileNotFound(command.Request.Id);
                 await _userProfileBusinessRules.UserProfileNotPossible();
                 //await _userProfileBusinessRules.UserProfileBlock(command.Request.UserId, command.Request.ProfileTestDate);
 
-                var userProfile = await _userProfileRepository.GetAsync(up => up.Id == command.Request.UserProfileId);
+                var userProfile = await _userProfileRepository.GetAsync(up => up.Id == command.Request.Id);
+                _mapper.Map(command.Request, userProfile);
 
                 var updatedUserProfile = await _userProfileRepository.UpdateAsync(userProfile);
 

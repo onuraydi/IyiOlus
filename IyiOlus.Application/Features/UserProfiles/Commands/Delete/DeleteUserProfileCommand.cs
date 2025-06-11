@@ -38,7 +38,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Delete
 
                 return new DeletedUserProfileResponse
                 {
-                    UserProfileId = request.userProfileId,
+                    Id = request.userProfileId,
                     Message = UserProfileMessages.UserProfileDeleted,
                 };
             }

@@ -1,4 +1,6 @@
-﻿using OWBAlgorithm.Services.ProfileServices;
+﻿using IyiOlus.Application.Features.ProfileTypes.Dtos.Responses;
+using IyiOlus.Application.Features.Users.Dtos.Responses;
+using OWBAlgorithm.Services.ProfileServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
 {
     public class UpdatedUserProfileResponse
     {
-        public Guid UserProfileId { get; set; }
+        public Guid Id { get; set; }
         public Profile Profile { get; set; }  // buradaki profile enum'u algoritma dll'den geliyor
         public Profile? OldProfile { get; set; } // kullanıcı yeni profile belirlediğinde eski profil buraya yazılacak
         public bool State { get; set; }  // önceki profile göre iyileşme olup olmadığı
@@ -17,9 +19,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string Message { get; set; } = default!;
-        //public Guid UserId { get; set; }
-        //public User User { get; set; } = default!;
-        //public Guid ProfileTypeId { get; set; }
-        //public ProfileType ProfileType { get; set; } = default!;
+        public virtual UserResponse UserResponse { get; set; } = default!;
+        public virtual ProfileTypeResponse ProfileTypeResponse { get; set; } = default!;
     }
 }
