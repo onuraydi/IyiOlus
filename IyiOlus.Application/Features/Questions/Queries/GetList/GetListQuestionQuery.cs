@@ -4,6 +4,7 @@ using IyiOlus.Application.Features.Questions.Rules;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,9 @@ namespace IyiOlus.Application.Features.Questions.Queries.GetList
             public async Task<Paginate<QuestionResponse>> Handle(GetListQuestionQuery request, CancellationToken cancellationToken)
             {
                 var questions = await _questionRepository.GetListAsync(
-                        index: request.PageSize,
+                        index: request.PageIndex,
                         size: request.PageSize,
+                        include: x => x.Include(y => y.ProfileType),
                         cancellationToken: cancellationToken
                     );
 

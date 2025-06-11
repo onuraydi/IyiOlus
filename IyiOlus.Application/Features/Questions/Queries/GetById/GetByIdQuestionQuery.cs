@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Questions.Dtos.Responses;
 using IyiOlus.Application.Features.Questions.Rules;
 using IyiOlus.Application.Services.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,10 @@ namespace IyiOlus.Application.Features.Questions.Queries.GetById
             {
                 await _questionBusinessRules.QuestionNotFound(request.QuestionId);
 
-                var question = await _questionRepository.GetAsync(q => q.Id == request.QuestionId);
+                var question = await _questionRepository.GetAsync(
+                    predicate: q => q.Id == request.QuestionId,
+                    include: x => x.Include(y => y.ProfileType),
+                    cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<QuestionResponse>(question);
                 return response;

@@ -39,7 +39,7 @@ namespace IyiOlus.Application.Features.Questions.Commands.Delete
 
                 return new DeletedQuestionResponse
                 {
-                    QuestionId = request.QuestionId,
+                    Id = request.QuestionId,
                     Message = QuestionMessages.QuestionDeleted,
                 };
             }

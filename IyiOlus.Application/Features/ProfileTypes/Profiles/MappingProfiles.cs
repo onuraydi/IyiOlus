@@ -20,11 +20,12 @@ namespace IyiOlus.Application.Features.ProfileTypes.Profiles
             CreateMap<ProfileType, CreatedProfileTypeResponse>();
             CreateMap<ProfileType, UpdatedProfileTypeResponse>();
             CreateMap<ProfileType, DeletedProfileTypeResponse>();
-
+                
             CreateMap<CreateProfileTypeRequest, ProfileType>();
             CreateMap<UpdateProfileTypeRequest, ProfileType>();
 
-            //CreateMap<Paginate<ProfileType>>  // Burada sayfalamaya gerek yok zaten 3 tane veri olacak şekilde kısıt eklenecek.
+            CreateMap<Paginate<ProfileType>, Paginate<ProfileTypeResponse>>()
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
         }
     }
 }

@@ -34,7 +34,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Commands.Create
 
             public async Task<CreatedProfileTypeResponse> Handle(CreateProfileTypeCommand command, CancellationToken cancellationToken)
             {
-                await _profileTypeBusinessRules.ProfileTypeCountCannotBeGraterThanThree(command.Request.ProfileType);
+                await _profileTypeBusinessRules.ProfileTypeCountCannotBeGraterThanThree(command.Request.Type);
 
                 var profileType = _mapper.Map<ProfileType>(command.Request);
                 var createdProfileType = await _profileTypeRepository.AddAsync(profileType);

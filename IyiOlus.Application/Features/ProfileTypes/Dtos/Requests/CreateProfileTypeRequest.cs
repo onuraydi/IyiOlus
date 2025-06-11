@@ -10,7 +10,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Dtos.Requests
 {
     public class CreateProfileTypeRequest
     {
-        public PT ProfileType { get; set; }
+        public PT Type { get; set; }
         //public virtual ICollection<Question> Questions { get; set; } = default!;
         //public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
     }

@@ -42,7 +42,7 @@ namespace IyiOlus.Application.Features.ProfileTypes.Commands.Delete
 
                 return new DeletedProfileTypeResponse
                 {
-                    ProfileTypeId = request.ProfileTypeId,
+                    Id = request.ProfileTypeId,
                     Message = ProfileTypeMessages.ProfileTypeDeleted
                 };
             }
