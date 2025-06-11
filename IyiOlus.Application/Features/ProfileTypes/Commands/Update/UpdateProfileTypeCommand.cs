@@ -32,9 +32,9 @@ namespace IyiOlus.Application.Features.ProfileTypes.Commands.Update
 
             public async Task<UpdatedProfileTypeResponse> Handle(UpdateProfileTypeCommand command, CancellationToken cancellationToken)
             {
-                await _profileTypeBusinessRules.ProfileTypeNotFound(command.Request.ProfileTypeId);
+                await _profileTypeBusinessRules.ProfileTypeNotFound(command.Request.Id);
 
-                var profileType = await _profileTypeRepository.GetAsync(pt => pt.Id == command.Request.ProfileTypeId);
+                var profileType = await _profileTypeRepository.GetAsync(pt => pt.Id == command.Request.Id);
                 _mapper.Map(command.Request, profileType);
 
                 var updatedProfileType = await _profileTypeRepository.UpdateAsync(profileType);

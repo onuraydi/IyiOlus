@@ -15,10 +15,15 @@ namespace IyiOlus.Application.Features.Questions.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Question, CreatedQuestionResponse>();
+            CreateMap<Question, QuestionResponse>()
+                .ForMember(dest => dest.ProfileTypeResponse, opt => opt.MapFrom(src => src.ProfileType));
+
+            CreateMap<Question, CreatedQuestionResponse>()
+                .ForMember(dest => dest.ProfileTypeResponse, opt => opt.MapFrom(src => src.ProfileType));
             CreateMap<Question, DeletedQuestionResponse>();
-            CreateMap<Question, QuestionResponse>();
-            CreateMap<Question, UpdatedQuestionResponse>();
+
+            CreateMap<Question, UpdatedQuestionResponse>()
+                .ForMember(dest => dest.ProfileTypeResponse, opt => opt.MapFrom(src => src.ProfileType));
 
             CreateMap<CreateQuestionRequest, Question>();
             CreateMap<UpdateQuestionRequest, Question>();

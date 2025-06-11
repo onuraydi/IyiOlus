@@ -32,9 +32,9 @@ namespace IyiOlus.Application.Features.Questions.Commands.Update
 
             public async Task<UpdatedQuestionResponse> Handle(UpdateQuestionCommand command, CancellationToken cancellationToken)
             {
-                await _questionBusinessRules.QuestionNotFound(command.Request.QuestionId);
+                await _questionBusinessRules.QuestionNotFound(command.Request.Id);
 
-                var question = await _questionRepository.GetAsync(q => q.Id == command.Request.QuestionId);
+                var question = await _questionRepository.GetAsync(q => q.Id == command.Request.Id);
                 _mapper.Map(command.Request, question);
 
                 var updatedQuestion = await _questionRepository.UpdateAsync(question);

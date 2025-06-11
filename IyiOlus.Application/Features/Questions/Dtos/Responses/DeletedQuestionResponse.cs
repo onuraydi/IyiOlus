@@ -8,7 +8,7 @@ namespace IyiOlus.Application.Features.Questions.Dtos.Responses
 {
     public class DeletedQuestionResponse
     {
-        public Guid QuestionId { get; set; }
+        public Guid Id { get; set; }
         public string Message { get; set; } = default!;
     }
 }
