@@ -1,4 +1,5 @@
 ﻿using IyiOlus.Core.Repositories;
+using OWBAlgorithm.Services.EvaluationServices;
 using OWBAlgorithm.Services.ProfileServices;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,6 @@ namespace IyiOlus.Domain.Entities
         public User User { get; set; } = default!;
         public Guid ProfileTypeId { get; set; }
         public ProfileType ProfileType { get; set; } = default!;
+        public List<Evaluation> Evaluations { get; set; } = new();
     }
 }

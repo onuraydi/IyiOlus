@@ -1,5 +1,6 @@
 ﻿using IyiOlus.Application.Features.ProfileTypes.Dtos.Responses;
 using IyiOlus.Application.Features.Users.Dtos.Responses;
+using OWBAlgorithm.Services.EvaluationServices;
 using OWBAlgorithm.Services.ProfileServices;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,6 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
         public string Message { get; set; } = default!;
         public virtual UserResponse UserResponse { get; set; } = default!;
         public virtual ProfileTypeResponse ProfileTypeResponse { get; set; } = default!;
+        public List<Evaluation> Evaluations { get; set; } = new();
     }
 }
