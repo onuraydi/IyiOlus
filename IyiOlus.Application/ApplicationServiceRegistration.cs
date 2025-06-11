@@ -9,6 +9,7 @@ using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Features.Users.Rules;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.Handlers;
 using Microsoft.Extensions.DependencyInjection;
+using OWBAlgorithm.Services.AnswerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace IyiOlus.Application
             services.AddScoped<UserAccountBusinessRules>();
             services.AddScoped<UserProfileBusinessRules>();
             services.AddScoped<UserBusinessRules>();
+            services.AddScoped<AnswerManager>();
 
             return services;
         }

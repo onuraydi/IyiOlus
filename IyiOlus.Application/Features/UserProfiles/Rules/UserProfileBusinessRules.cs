@@ -1,5 +1,6 @@
 ﻿using IyiOlus.Application.Features.UserProfiles.Constants;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Domain.Entities;
 using OWBAlgorithm.Services.ProfileServices;
 using System;
 using System.Collections.Generic;
@@ -31,10 +32,9 @@ namespace IyiOlus.Application.Features.UserProfiles.Rules
                 throw new Exception(UserProfileMessages.UserProfileBlock);
         }
 
-        public async Task UserProfileNotPossible()
+        public void UserProfileNotPossible(UserProfile userProfile)
         {
-            var result = await _userProfileRepository.AnyAsync(up => up.Profile == Profile.Yok);
-            if (result)
+            if(userProfile.Profile == Profile.Yok)
                 throw new Exception(UserProfileMessages.UserProfileNotPossible);
         }
     }
