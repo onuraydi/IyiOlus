@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IyiOlus.Application.Features.Authentications.Dtos.Responses
+namespace IyiOlus.Application.Features.Authentications.Register.Dtos.Responses
 {
     public class RegisterResponse
     {

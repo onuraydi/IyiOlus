@@ -24,7 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Authentications\Queries\" />
+    <Folder Include="Features\Authentications\Login\Queries\" />
+    <Folder Include="Features\Authentications\RefreshToken\Profiles\" />
+    <Folder Include="Features\Authentications\RefreshToken\Querires\" />
+    <Folder Include="Features\Authentications\Register\Queries\" />
+    <Folder Include="Features\Authentications\Revoke\Profiles\" />
+    <Folder Include="Features\Authentications\Revoke\Queries\" />
   </ItemGroup>
 
 </Project>

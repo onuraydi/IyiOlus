@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
-using IyiOlus.Application.Features.Authentications.Rules;
+using IyiOlus.Application.Features.Authentications.Login.Rules;
+using IyiOlus.Application.Features.Authentications.RefreshToken.Rules;
+using IyiOlus.Application.Features.Authentications.Register.Rules;
+using IyiOlus.Application.Features.Authentications.Revoke.Rules;
 using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Features.ProfileTypes.Rules;
@@ -44,7 +47,9 @@ namespace IyiOlus.Application
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<AnswerManager>();
             services.AddScoped<AuthBusinessRules>();
-
+            services.AddScoped<LoginBusinessRules>();
+            services.AddScoped<RefreshTokenBusinessRules>();
+            services.AddScoped<RevokeBusinessRules>();
             return services;
         }
     }

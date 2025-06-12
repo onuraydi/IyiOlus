@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using IyiOlus.Application.Features.Authentications.Constants;
-using IyiOlus.Application.Features.Authentications.Dtos.Requests;
-using IyiOlus.Application.Features.Authentications.Dtos.Responses;
-using IyiOlus.Application.Features.Authentications.Rules;
+using IyiOlus.Application.Features.Authentications.Register.Constants;
+using IyiOlus.Application.Features.Authentications.Register.Dtos.Requests;
+using IyiOlus.Application.Features.Authentications.Register.Dtos.Responses;
+using IyiOlus.Application.Features.Authentications.Register.Rules;
 using IyiOlus.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IyiOlus.Application.Features.Authentications.Commands.Register
+namespace IyiOlus.Application.Features.Authentications.Register.Commands.Register
 {
     public class RegisterCommand:IRequest<RegisterResponse>
     {

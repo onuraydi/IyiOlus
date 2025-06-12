@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using IyiOlus.Application.Features.Authentications.Dtos.Requests;
-using IyiOlus.Application.Features.Authentications.Dtos.Responses;
+using IyiOlus.Application.Features.Authentications.Register.Dtos.Requests;
+using IyiOlus.Application.Features.Authentications.Register.Dtos.Responses;
 using IyiOlus.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IyiOlus.Application.Features.Authentications.Profiles
+namespace IyiOlus.Application.Features.Authentications.Register.Profiles
 {
     public class MappingProfiles : Profile
     {
