@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using IyiOlus.Application.Features.Authentications.Rules;
 using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Features.ProfileTypes.Rules;
@@ -42,6 +43,7 @@ namespace IyiOlus.Application
             services.AddScoped<UserProfileBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<AnswerManager>();
+            services.AddScoped<AuthBusinessRules>();
 
             return services;
         }
