@@ -1,4 +1,5 @@
 ﻿using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
 using IyiOlus.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +31,21 @@ namespace IyiOlus.Persistence
             services.AddScoped<IUserAccountInfoRepository, UserAccountRepository>();
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddIdentityCore<ApplicationUser>(opt =>
+            {
+
+                /// Burada yapılandırmalara bakabilirsin!
+
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 2; // Burası değişecek muhtemelen
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireDigit = false;
+                opt.SignIn.RequireConfirmedEmail = false; // sonra true olacak 
+            })
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<BaseDbContext>();
 
             return services;
         }
