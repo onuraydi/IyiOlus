@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using IyiOlus.Application.Features.Authentications;
 using IyiOlus.Application.Features.Authentications.Login.Rules;
 using IyiOlus.Application.Features.Authentications.RefreshToken.Rules;
 using IyiOlus.Application.Features.Authentications.Register.Rules;
@@ -10,6 +11,7 @@ using IyiOlus.Application.Features.Questions.Rules;
 using IyiOlus.Application.Features.Settings.Rules;
 using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Features.Users.Rules;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using OWBAlgorithm.Services.AnswerServices;
@@ -34,7 +36,11 @@ namespace IyiOlus.Application
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+            services.AddHttpContextAccessor();
+
             services.AddSingleton<HttpExceptionHandler>();
+
+            services.AddScoped<IAuthenticatedUserRepository, AuthenticatedUserManager>();
 
             services.AddScoped<ContactBusinessRules>();
             services.AddScoped<DailyMoodBusinessRules>();

@@ -30,6 +30,7 @@ namespace IyiOlus.Core.Repositories.Token
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email)
             };
 

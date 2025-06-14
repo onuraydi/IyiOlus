@@ -17,10 +17,10 @@ namespace IyiOlus.Persistence.EntityConfigurations
 
             builder.Property(au => au.Email).IsRequired().HasMaxLength(50);
 
-            //builder.HasOne(u => u.User)
-            //    .WithOne(au => au.ApplicationUser)
-            //    .HasForeignKey<User>(u => u.ApplicationUserId)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(u => u.User)
+                .WithOne(au => au.ApplicationUser)
+                .HasForeignKey<User>(u => u.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

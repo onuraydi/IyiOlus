@@ -12,6 +12,6 @@ namespace IyiOlus.Application.Features.Contacts.Dtos.Requests
     {
         public string Subject { get; set; } = default!;
         public string Message { get; set; } = default!;
-        public Guid UserId { get; set; }
+        //public Guid UserId { get; set; }
     }
 }

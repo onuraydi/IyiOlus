@@ -1,4 +1,5 @@
 ﻿using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
 using IyiOlus.Persistence.Repositories;
