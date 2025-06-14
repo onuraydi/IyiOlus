@@ -40,7 +40,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "admin,user")]   // buradaki roller değişiklik gösterebilir
+        [Authorize(Roles = "admin,user")] 
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             var query = new GetByIdProfileTypeQuery { ProfileTypeId = id };
@@ -49,7 +49,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin,user")]   // buradaki roller değişiklik gösterebilir
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetList([FromQuery]GetListProfileTypeQuery getListProfileTypeQuery)
         {
             var result = await Mediator.Send(getListProfileTypeQuery);
