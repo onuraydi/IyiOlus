@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Users.Dtos.Requests;
 using IyiOlus.Application.Features.Users.Dtos.Responses;
 using IyiOlus.Core.Repositories.Pagination;
 using IyiOlus.Domain.Entities;
+using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace IyiOlus.Application.Features.Users.Profiles
         public MappingProfiles()
         {
             CreateMap<User, UserResponse>()
-                .ForMember(dest => dest.UserAccountResponse, opt => opt.MapFrom(src => src.UserAccountInfo));
+                .ForMember(dest => dest.RegisterResponse, opt => opt.MapFrom(src => src.ApplicationUser));
             CreateMap<CreatedUserResponse, User>().ReverseMap();
             CreateMap<UpdatedUserResponse, User>().ReverseMap();
             CreateMap<DeletedUserResponse, User>().ReverseMap();

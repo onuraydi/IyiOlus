@@ -40,7 +40,7 @@ namespace IyiOlus.Application.Features.Users.Commands.Create
                 _userBusinessRules.SurnameLong(command.Request.Surname);
 
                 var user = _mapper.Map<User>(command.Request);
-
+                user.ApplicationUserId = command.Request.UserAuthId;
                 var createdUser = await _userRepository.AddAsync(user);
 
                 var response = _mapper.Map<CreatedUserResponse>(createdUser);

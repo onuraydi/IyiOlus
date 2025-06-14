@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using IyiOlus.Application.Features.Contacts.Dtos.Responses;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Core.Repositories.Pagination;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,6 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetListByUserId
 {
     public class GetListByUserIdContactQuery:IRequest<Paginate<ContactResponse>>
     {
-        public Guid UserId { get; set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
 
@@ -22,17 +22,20 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetListByUserId
         {
             private readonly IContactRepository _contactRepository;
             private readonly IMapper _mapper;
-
-            public GetListByUserIdContactQueryHandler(IContactRepository contactRepository, IMapper mapper)
+            private readonly IAuthenticatedUserRepository _authenticatedUserRepository;
+            public GetListByUserIdContactQueryHandler(IContactRepository contactRepository, IMapper mapper, IAuthenticatedUserRepository authenticatedUserRepository)
             {
                 _contactRepository = contactRepository;
                 _mapper = mapper;
+                _authenticatedUserRepository = authenticatedUserRepository;
             }
 
             public async Task<Paginate<ContactResponse>> Handle(GetListByUserIdContactQuery request, CancellationToken cancellationToken)
             {
+                var userId = await _authenticatedUserRepository.GetAuthenticatedUserId();
+
                 var contacts = await _contactRepository.GetListAsync(
-                        predicate: u => u.UserId == request.UserId,
+                        predicate: u => u.UserId == userId,
                         index: request.PageIndex,
                         size: request.PageSize,
                         include: c => c.Include(x => x.User),

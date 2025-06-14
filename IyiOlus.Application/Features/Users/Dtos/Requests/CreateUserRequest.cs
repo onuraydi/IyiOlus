@@ -1,5 +1,4 @@
-﻿using IyiOlus.Application.Features.UserAccounts.Dtos.Responses;
-using IyiOlus.Domain.Entities;
+﻿using IyiOlus.Domain.Entities;
 using IyiOlus.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,6 @@ namespace IyiOlus.Application.Features.Users.Dtos.Requests
         public EducationLevel EducationLevel { get; set; }
         public bool Gender { get; set; }
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
-        public Guid UserAccountInfoId { get; set; }
-
-        //public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
-        //public virtual Setting Setting { get; set; } = default!;
-
-        //public virtual ICollection<Daily> Dailies { get; set; } = default!;
-        //public virtual ICollection<DailyMood> DailyMoods { get; set; } = default!;
-        //public virtual ICollection<Contact> Contacts { get; set; } = default!;
-        //public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
+        public Guid UserAuthId { get; set; }
     }
 }

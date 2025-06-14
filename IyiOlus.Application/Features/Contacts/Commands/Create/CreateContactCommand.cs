@@ -4,12 +4,17 @@ using IyiOlus.Application.Features.Contacts.Dtos.Requests;
 using IyiOlus.Application.Features.Contacts.Dtos.Responses;
 using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,12 +30,14 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Create
             private readonly IContactRepository _contactRepository;
             private readonly IMapper _mapper;
             private readonly ContactBusinessRules _contactBusinessRules;
+            private readonly IAuthenticatedUserRepository _authenticatedUserRepository;
 
-            public CreateContactCommandHandler(IContactRepository contactRepository, IMapper mapper, ContactBusinessRules contactBusinessRules)
+            public CreateContactCommandHandler(IContactRepository contactRepository, IMapper mapper, ContactBusinessRules contactBusinessRules, IAuthenticatedUserRepository authenticatedUserRepository)
             {
                 _contactRepository = contactRepository;
                 _mapper = mapper;
                 _contactBusinessRules = contactBusinessRules;
+                _authenticatedUserRepository = authenticatedUserRepository;
             }
 
             public async Task<CreatedContactResponse> Handle(CreateContactCommand command, CancellationToken cancellationToken)
@@ -44,10 +51,17 @@ namespace IyiOlus.Application.Features.Contacts.Commands.Create
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamMessages(command.Request.Message);
                 _contactBusinessRules.TheUserCannotSendEmptyOrSpamSubject(command.Request.Subject);
 
-                await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(command.Request.UserId);
+
+
+                var userId = await _authenticatedUserRepository.GetAuthenticatedUserId();
+
+
+                await _contactBusinessRules.TheUserCannotSendExitFrequentMessages(userId);
 
                 var contact = _mapper.Map<Contact>(command.Request);
+                contact.UserId = userId;
                 var createdContact = await _contactRepository.AddAsync(contact);
+
 
                 var response = _mapper.Map<CreatedContactResponse>(createdContact);
                 response.Message = ContactMessages.ContactSended;

@@ -35,7 +35,7 @@ namespace IyiOlus.Application.Features.Users.Queries.GetById
 
                 var user = await _userRepository.GetAsync(
                     predicate: u => u.Id == request.UserId,
-                    include: u => u.Include(x => x.UserAccountInfo),
+                    include: x => x.Include(y => y.ApplicationUser),
                     cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<UserResponse>(user);

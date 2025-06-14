@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.Users.Queries.GetList
                 var users = await _userRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
-                        include: u => u.Include(x => x.UserAccountInfo),
+                        include: x => x.Include(y => y.ApplicationUser),
                         cancellationToken: cancellationToken
                     );
 

@@ -33,7 +33,7 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetList
                 var contacts = await _contactRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
-                        include: c => c.Include(x => x.User),
+                        include: c => c.Include(x => x.User).ThenInclude(y => y.ApplicationUser),
                         cancellationToken: cancellationToken
                     );
 

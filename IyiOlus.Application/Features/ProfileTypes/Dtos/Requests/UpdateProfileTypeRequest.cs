@@ -11,7 +11,5 @@ namespace IyiOlus.Application.Features.ProfileTypes.Dtos.Requests
     {
         public Guid Id { get; set; }
         public PT Type { get; set; }
-        //public virtual ICollection<Question> Questions { get; set; } = default!;
-        //public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
     }
 }

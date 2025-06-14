@@ -36,7 +36,7 @@ namespace IyiOlus.Application.Features.Questions.Queries.GetListByQuestionType
                         index: request.PageIndex,
                         size: request.PageSize,
                         predicate: q => q.QuestionType == request.QuestionType,
-                        //include:
+                        //include: x => x.Include()
                         cancellationToken: cancellationToken
                     );
 

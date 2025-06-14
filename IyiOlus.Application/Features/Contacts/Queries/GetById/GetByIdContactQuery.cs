@@ -35,7 +35,7 @@ namespace IyiOlus.Application.Features.Contacts.Queries.GetById
 
                 var contact = await _contactRepository.GetAsync(
                     predicate: c => c.Id == request.id,
-                    include: c => c.Include(x => x.User),
+                    include: c => c.Include(x => x.User).ThenInclude(y => y.ApplicationUser),
                     cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<ContactResponse>(contact);

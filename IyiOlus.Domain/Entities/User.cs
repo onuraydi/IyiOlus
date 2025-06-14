@@ -17,10 +17,9 @@ namespace IyiOlus.Domain.Entities
         public EducationLevel EducationLevel { get; set; }
         public bool Gender { get; set; }   
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
-        public virtual UserAccountInfo UserAccountInfo { get; set; } = default!;
-        public Guid UserAccountInfoId { get; set; }
         public virtual Setting Setting { get; set; } = default!;
-
+        public virtual ApplicationUser ApplicationUser { get; set; } = default!;
+        public Guid ApplicationUserId { get; set; }
         public virtual ICollection<DailyMood> DailyMoods { get; set; } = default!;
         public virtual ICollection<Contact> Contacts { get; set; } = default!;
         public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;

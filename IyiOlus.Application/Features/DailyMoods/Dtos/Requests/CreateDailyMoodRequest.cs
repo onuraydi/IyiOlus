@@ -12,6 +12,5 @@ namespace IyiOlus.Application.Features.DailyMoods.Dtos.Requests
     {
         public Mood Mood { get; set; }
         public DateTime Date { get; set; }
-        public Guid UserId { get; set; }
     }
 }

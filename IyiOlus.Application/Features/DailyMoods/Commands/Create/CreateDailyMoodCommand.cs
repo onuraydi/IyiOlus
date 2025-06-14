@@ -4,6 +4,7 @@ using IyiOlus.Application.Features.DailyMoods.Dtos.Requests;
 using IyiOlus.Application.Features.DailyMoods.Dtos.Responses;
 using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
 using System;
@@ -23,17 +24,22 @@ namespace IyiOlus.Application.Features.DailyMoods.Commands.Create
             private readonly IDailyMoodRepository _dailyMoodRepository;
             private readonly IMapper _mapper;
             private readonly DailyMoodBusinessRules _dailyMoodBusinessRules;
+            private readonly IAuthenticatedUserRepository _authenticatedUserRepository;
 
-            public CreateDailyMoodCommandHandler(IDailyMoodRepository dailyMoodRepository, IMapper mapper, DailyMoodBusinessRules dailyMoodBusinessRules)
+            public CreateDailyMoodCommandHandler(IDailyMoodRepository dailyMoodRepository, IMapper mapper, DailyMoodBusinessRules dailyMoodBusinessRules, IAuthenticatedUserRepository authenticatedUserRepository)
             {
                 _dailyMoodRepository = dailyMoodRepository;
                 _mapper = mapper;
                 _dailyMoodBusinessRules = dailyMoodBusinessRules;
+                _authenticatedUserRepository = authenticatedUserRepository;
             }
 
             public async Task<CreatedDailyMoodResponse> Handle(CreateDailyMoodCommand command, CancellationToken cancellationToken)
             {
+                var userId = await _authenticatedUserRepository.GetAuthenticatedUserId();
+
                 var dailyMood = _mapper.Map<DailyMood>(command.Request);
+                dailyMood.UserId = userId;
 
                 var createdDailyMood = await _dailyMoodRepository.AddAsync(dailyMood);
 
