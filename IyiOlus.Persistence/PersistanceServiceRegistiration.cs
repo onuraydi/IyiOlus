@@ -28,7 +28,6 @@ namespace IyiOlus.Persistence
             services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<ISettingRepository, SettingRepository>();
-            services.AddScoped<IUserAccountInfoRepository, UserAccountRepository>();
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 

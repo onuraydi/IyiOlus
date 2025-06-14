@@ -4,6 +4,7 @@ using IyiOlus.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IyiOlus.Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250614070427_migAuthUserRelation")]
+    partial class migAuthUserRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,7 +139,7 @@ namespace IyiOlus.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.DailyMood", b =>
@@ -168,7 +171,7 @@ namespace IyiOlus.Persistence.Migrations
                     b.HasIndex("UserId", "Date")
                         .IsUnique();
 
-                    b.ToTable("DailyMoods", (string)null);
+                    b.ToTable("DailyMoods");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.ProfileType", b =>
@@ -191,7 +194,7 @@ namespace IyiOlus.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProfileTypes", (string)null);
+                    b.ToTable("ProfileTypes");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.Question", b =>
@@ -224,7 +227,7 @@ namespace IyiOlus.Persistence.Migrations
 
                     b.HasIndex("ProfileTypeId");
 
-                    b.ToTable("Questions", (string)null);
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.Role", b =>
@@ -286,7 +289,7 @@ namespace IyiOlus.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Settings", (string)null);
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.User", b =>
@@ -337,7 +340,7 @@ namespace IyiOlus.Persistence.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("AppUsers", (string)null);
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("IyiOlus.Domain.Entities.UserProfile", b =>
@@ -387,7 +390,7 @@ namespace IyiOlus.Persistence.Migrations
                     b.HasIndex("UserId", "ProfileTypeId")
                         .IsUnique();
 
-                    b.ToTable("UserProfiles", (string)null);
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

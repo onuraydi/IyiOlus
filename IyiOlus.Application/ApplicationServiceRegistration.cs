@@ -8,7 +8,6 @@ using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Features.ProfileTypes.Rules;
 using IyiOlus.Application.Features.Questions.Rules;
 using IyiOlus.Application.Features.Settings.Rules;
-using IyiOlus.Application.Features.UserAccounts.Rules;
 using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Features.Users.Rules;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.Handlers;
@@ -42,7 +41,6 @@ namespace IyiOlus.Application
             services.AddScoped<ProfileTypeBusinessRules>();
             services.AddScoped<QuestionBusinessRules>();
             services.AddScoped<SettingBusinessRules>();
-            services.AddScoped<UserAccountBusinessRules>();
             services.AddScoped<UserProfileBusinessRules>();
             services.AddScoped<UserBusinessRules>();
             services.AddScoped<AnswerManager>();
@@ -50,6 +48,7 @@ namespace IyiOlus.Application
             services.AddScoped<LoginBusinessRules>();
             services.AddScoped<RefreshTokenBusinessRules>();
             services.AddScoped<RevokeBusinessRules>();
+
             return services;
         }
     }

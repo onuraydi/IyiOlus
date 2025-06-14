@@ -12,5 +12,6 @@ namespace IyiOlus.Domain.Entities
         public string FullName { get; set; } = default!;
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
+        public virtual User User { get; set; } = default!;
     }
 }
