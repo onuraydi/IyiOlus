@@ -2,6 +2,7 @@
 using IyiOlus.Application.Features.Authentications.RefreshToken.Commands.RefreshToken;
 using IyiOlus.Application.Features.Authentications.Register.Commands.Register;
 using IyiOlus.Application.Features.Authentications.Revoke.Commands.Revoke;
+using IyiOlus.Application.Features.Authentications.Verification.Commands.ConfirmMail;
 using IyiOlus.Application.Features.Authentications.Verification.Commands.SendVerificationCode;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,13 @@ namespace IyiOlus.WebApi.Controllers
         public async Task<IActionResult> SendVerificationCode([FromBody]SendVerificationCodeCommand sendVerificationCodeCommand)
         {
             var result = await Mediator.Send(sendVerificationCodeCommand);
+            return Ok(result);
+        }
+
+        [HttpPost("Confirm")]
+        public async Task<IActionResult> Confirm([FromBody]ConfirmMailCommand confirmMailCommand)
+        {
+            var result = await Mediator.Send(confirmMailCommand);
             return Ok(result);
         }
     }

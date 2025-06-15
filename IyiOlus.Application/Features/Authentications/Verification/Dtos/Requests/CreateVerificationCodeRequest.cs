@@ -8,6 +8,6 @@ namespace IyiOlus.Application.Features.Authentications.Verification.Dtos.Request
 {
     public class CreateVerificationCodeRequest
     {
-
+        public string code { get; set; } = default!;
     }
 }
