@@ -8,6 +8,6 @@ namespace IyiOlus.Core.Mail.Repositories
 {
     public interface IMailSenderRepository
     {
-        Task SendMailAsync(string toMail,string code);
+        Task SendMailAsync(string toMail,string code,string subject,string body);
     }
 }

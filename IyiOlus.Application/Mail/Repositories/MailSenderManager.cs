@@ -10,13 +10,13 @@ namespace IyiOlus.Core.Mail.Repositories
 {
     public class MailSenderManager : IMailSenderRepository
     {
-        public async Task SendMailAsync(string toMail,string code)
+        public async Task SendMailAsync(string toMail,string code,string subject, string body)
         {
             var message = new MailMessage
             {
                 From = new MailAddress("no-reply@gmail.com", "İyi Oluş"),
-                Subject = "Hesap Doğrulama",
-                Body = $"<h1>Mail adresinizi doğrulama için kod: {code}</h1>",
+                Subject = subject,
+                Body = $"<h1>{body}: {code}</h1>",
                 IsBodyHtml=true
             };
 

@@ -47,7 +47,9 @@ namespace IyiOlus.Application.Features.Authentications.Verification.Commands.Sen
                     ExpirationTime = DateTime.Now.AddMinutes(5)
                 });
 
-                await _mailSenderRepository.SendMailAsync(email, code);
+                string body = "mail adresinizi doğrulama için kod";
+                string subject = "Hesap Doğrulama";
+                await _mailSenderRepository.SendMailAsync(email, code, subject, body);
 
                 return new VerificationCodeResponse()
                 {
