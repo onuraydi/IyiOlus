@@ -13,6 +13,7 @@ using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Features.Users.Rules;
 using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.Handlers;
+using IyiOlus.Core.Mail.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using OWBAlgorithm.Services.AnswerServices;
 using System;
@@ -41,6 +42,7 @@ namespace IyiOlus.Application
             services.AddSingleton<HttpExceptionHandler>();
 
             services.AddScoped<IAuthenticatedUserRepository, AuthenticatedUserManager>();
+            services.AddScoped<IMailSenderRepository, MailSenderManager>();
 
             services.AddScoped<ContactBusinessRules>();
             services.AddScoped<DailyMoodBusinessRules>();

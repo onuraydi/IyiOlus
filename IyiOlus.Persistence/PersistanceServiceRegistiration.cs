@@ -3,6 +3,7 @@ using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
 using IyiOlus.Persistence.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,7 @@ namespace IyiOlus.Persistence
             services.AddScoped<ISettingRepository, SettingRepository>();
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmailVerificationRepository, EmailVerificationRepository>();
 
             services.AddIdentityCore<ApplicationUser>(opt =>
             {
@@ -42,10 +44,11 @@ namespace IyiOlus.Persistence
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireDigit = false;
-                opt.SignIn.RequireConfirmedEmail = false; // sonra true olacak 
+                opt.SignIn.RequireConfirmedEmail = true; // sonra true olacak 
             })
                 .AddRoles<Role>()
-                .AddEntityFrameworkStores<BaseDbContext>();
+                .AddEntityFrameworkStores<BaseDbContext>()
+                .AddDefaultTokenProviders();
 
             return services;
         }

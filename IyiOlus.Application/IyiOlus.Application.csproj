@@ -30,6 +30,10 @@
     <Folder Include="Features\Authentications\Register\Queries\" />
     <Folder Include="Features\Authentications\Revoke\Profiles\" />
     <Folder Include="Features\Authentications\Revoke\Queries\" />
+    <Folder Include="Features\Authentications\Verification\Constants\" />
+    <Folder Include="Features\Authentications\Verification\Rules\" />
+    <Folder Include="Features\Authentications\Verification\Profiles\" />
+    <Folder Include="Features\Authentications\Verification\Queries\" />
   </ItemGroup>
 
 </Project>

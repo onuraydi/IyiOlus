@@ -59,6 +59,8 @@ namespace IyiOlus.Application.Features.Authentications.Register.Commands.Registe
                     await _userManager.AddToRoleAsync(user, "user");
                 }
 
+
+
                 var response = _mapper.Map<RegisterResponse>(user);
                 response.Message = AuthenticationMessages.RegisterSucceeded;
                 return response;

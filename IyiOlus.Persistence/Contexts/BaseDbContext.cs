@@ -18,6 +18,7 @@ namespace IyiOlus.Persistence.Contexts
 
         }
 
+        public DbSet<EmailVerification> EmailVerifications { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<DailyMood> DailyMoods { get; set; }
         public DbSet<ProfileType> ProfileTypes { get;set; }
