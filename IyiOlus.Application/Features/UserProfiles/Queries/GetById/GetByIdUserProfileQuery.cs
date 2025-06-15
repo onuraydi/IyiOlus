@@ -34,7 +34,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Queries.GetById
 
                 var userProfile = await _userProfileRepository.GetAsync(
                     predicate: up => up.Id == request.UserProfileId,
-                    include: x => x.Include(y => y.User).Include(y => y.ProfileType),
+                    include: x => x.Include(y => y.User).ThenInclude(x => x.ApplicationUser).Include(y => y.ProfileType),
                     cancellationToken: cancellationToken);
 
                 var response = _mapper.Map<UserProfileResponse>(userProfile);

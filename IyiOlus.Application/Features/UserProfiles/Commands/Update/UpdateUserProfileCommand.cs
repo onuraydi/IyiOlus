@@ -4,6 +4,7 @@ using IyiOlus.Application.Features.UserProfiles.Dtos.Requests;
 using IyiOlus.Application.Features.UserProfiles.Dtos.Responses;
 using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using MediatR;
 using OWBAlgorithm.Services.AnswerServices;
 using OWBAlgorithm.Services.EvaluationServices;
@@ -27,12 +28,14 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
             private readonly IMapper _mapper;
             private readonly UserProfileBusinessRules _userProfileBusinessRules;
             private readonly AnswerManager _answerManager;
-            public UpdateUserProfileCommandHandler(IUserProfileRepository userProfileRepository, IMapper mapper, UserProfileBusinessRules userProfileBusinessRules, AnswerManager answerManager)
+            private readonly IAuthenticatedUserRepository _authenticatedUserRepository;
+            public UpdateUserProfileCommandHandler(IUserProfileRepository userProfileRepository, IMapper mapper, UserProfileBusinessRules userProfileBusinessRules, AnswerManager answerManager, IAuthenticatedUserRepository authenticatedUserRepository)
             {
                 _userProfileRepository = userProfileRepository;
                 _mapper = mapper;
                 _userProfileBusinessRules = userProfileBusinessRules;
                 _answerManager = answerManager;
+                _authenticatedUserRepository = authenticatedUserRepository;
             }
 
             public async Task<UpdatedUserProfileResponse> Handle(UpdateUserProfileCommand command, CancellationToken cancellationToken)
@@ -40,6 +43,8 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
                 await _userProfileBusinessRules.UserProfileNotFound(command.Request.Id);
 
                 //await _userProfileBusinessRules.UserProfileBlock(command.Request.UserId, command.Request.ProfileTestDate);
+
+                var userId = await _authenticatedUserRepository.GetAuthenticatedUserId();
 
                 command.answers.AddRange(command.Request.answers);
                 _answerManager.AddAnswer(command.answers);
@@ -53,7 +58,8 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
                 var userProfile = await _userProfileRepository.GetAsync(up => up.Id == command.Request.Id);
                 var oldProfile = userProfile.Profile;
                 _mapper.Map(command.Request, userProfile);
-                
+
+                userProfile.UserId = userId;
                 userProfile.OldProfile = oldProfile;
                 userProfile.Evaluations = evaluations;
                 userProfile.Profile = profile;

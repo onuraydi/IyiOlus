@@ -3,6 +3,7 @@ using IyiOlus.Application.Features.Users.Commands.Delete;
 using IyiOlus.Application.Features.Users.Commands.Update;
 using IyiOlus.Application.Features.Users.Queries.GetById;
 using IyiOlus.Application.Features.Users.Queries.GetList;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IyiOlus.WebApi.Controllers
@@ -12,6 +13,7 @@ namespace IyiOlus.WebApi.Controllers
     public class UsersController : BaseController
     {
         [HttpPost]
+        [Authorize(Roles ="user,admin")]
         public async Task<IActionResult> Create([FromBody]CreateUserCommand createUserCommand)
         {
             var result = await Mediator.Send(createUserCommand);
@@ -19,6 +21,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "user,admin")]
         public async Task<IActionResult> Update([FromBody]UpdateUserCommand updateUserCommand)
         {
             var result = await Mediator.Send(updateUserCommand);
@@ -26,6 +29,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> Delete([FromRoute]Guid id)
         {
             var command = new DeleteUserCommand { UserId = id };
@@ -34,6 +38,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles ="admin, user")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             var query = new GetByIdUserQuery { UserId = id };
@@ -42,6 +47,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> GetList([FromQuery]GetListUserQuery getListUserQuery)
         {
             var result = await Mediator.Send(getListUserQuery);

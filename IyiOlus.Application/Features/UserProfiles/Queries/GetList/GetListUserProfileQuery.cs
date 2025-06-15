@@ -34,7 +34,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Queries.GetList
                 var userProfiles = await _userProfileRepository.GetListAsync(
                         index: request.PageIndex,
                         size: request.PageSize,
-                        include: x => x.Include(y => y.User).Include(y => y.ProfileType),
+                        include: x => x.Include(y => y.User).ThenInclude(y => y.ApplicationUser).Include(y => y.ProfileType),
                         cancellationToken: cancellationToken
                     );
 

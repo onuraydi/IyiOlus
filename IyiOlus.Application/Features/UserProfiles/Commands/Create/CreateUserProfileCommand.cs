@@ -4,6 +4,7 @@ using IyiOlus.Application.Features.UserProfiles.Dtos.Requests;
 using IyiOlus.Application.Features.UserProfiles.Dtos.Responses;
 using IyiOlus.Application.Features.UserProfiles.Rules;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
 using OWBAlgorithm.Services.AnswerServices;
@@ -28,19 +29,23 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Create
             private readonly IMapper _mapper;
             private readonly UserProfileBusinessRules _userProfileBusinessRules;
             private readonly AnswerManager _answerManager;
+            private readonly IAuthenticatedUserRepository _authenticatedUserRepository;
 
-            public CreateUserProfileCommandHandler(IUserProfileRepository userProfileRepository, IMapper mapper, UserProfileBusinessRules userProfileBusinessRules, AnswerManager answerManager)
+            public CreateUserProfileCommandHandler(IUserProfileRepository userProfileRepository, IMapper mapper, UserProfileBusinessRules userProfileBusinessRules, AnswerManager answerManager, IAuthenticatedUserRepository authenticatedUserRepository)
             {
                 _userProfileRepository = userProfileRepository;
                 _mapper = mapper;
                 _userProfileBusinessRules = userProfileBusinessRules;
                 _answerManager = answerManager;
+                _authenticatedUserRepository = authenticatedUserRepository;
             }
 
             public async Task<CreatedUserProfileResponse> Handle(CreateUserProfileCommand command, CancellationToken cancellationToken)
             {
                 //await _userProfileBusinessRules.UserProfileBlock(command.Request.UserId, command.Request.ProfileTestDate);
                 // bunu açma çünkü burada değişiklik oldu kullanıcı günde 3 kez profilleme yapabilir
+
+                var userId = await _authenticatedUserRepository.GetAuthenticatedUserId();
 
                 command.answers.AddRange(command.Request.answers);
 
@@ -52,10 +57,11 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Create
                 var profile = profileManager.GetProfile();
 
                 var userProfile = _mapper.Map<UserProfile>(command.Request);
+                userProfile.UserId = userId;
                 userProfile.Profile = profile;
                 userProfile.Evaluations = evaluations;
                 userProfile.State = false;
-
+                
                 _userProfileBusinessRules.UserProfileNotPossible(userProfile);
 
                 var createdUserProfile = await _userProfileRepository.AddAsync(userProfile);
