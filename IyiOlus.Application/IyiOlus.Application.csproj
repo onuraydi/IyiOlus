@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Authentications\ForgotPassword\Contants\" />
+    <Folder Include="Features\Authentications\ForgotPassword\Rules\" />
+    <Folder Include="Features\Authentications\ForgotPassword\Profiles\" />
+    <Folder Include="Features\Authentications\ForgotPassword\Queries\" />
     <Folder Include="Features\Authentications\Login\Queries\" />
     <Folder Include="Features\Authentications\RefreshToken\Profiles\" />
     <Folder Include="Features\Authentications\RefreshToken\Querires\" />

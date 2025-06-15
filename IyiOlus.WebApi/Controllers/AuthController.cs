@@ -1,4 +1,6 @@
-﻿using IyiOlus.Application.Features.Authentications.Login.Commands.Login;
+﻿using IyiOlus.Application.Features.Authentications.ForgotPassword.Commands.ForgotPassword;
+using IyiOlus.Application.Features.Authentications.ForgotPassword.Commands.ResetPassword;
+using IyiOlus.Application.Features.Authentications.Login.Commands.Login;
 using IyiOlus.Application.Features.Authentications.RefreshToken.Commands.RefreshToken;
 using IyiOlus.Application.Features.Authentications.Register.Commands.Register;
 using IyiOlus.Application.Features.Authentications.Revoke.Commands.Revoke;
@@ -52,6 +54,20 @@ namespace IyiOlus.WebApi.Controllers
         public async Task<IActionResult> Confirm([FromBody]ConfirmMailCommand confirmMailCommand)
         {
             var result = await Mediator.Send(confirmMailCommand);
+            return Ok(result);
+        }
+
+        [HttpPost("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordCommand forgotPasswordCommand)
+        {
+            var result = await Mediator.Send(forgotPasswordCommand);
+            return Ok(result);
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordCommand resetPasswordCommand)
+        {
+            var result = await Mediator.Send(resetPasswordCommand);
             return Ok(result);
         }
     }
