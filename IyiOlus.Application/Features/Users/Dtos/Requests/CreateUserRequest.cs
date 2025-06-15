@@ -17,6 +17,5 @@ namespace IyiOlus.Application.Features.Users.Dtos.Requests
         public EducationLevel EducationLevel { get; set; }
         public bool Gender { get; set; }
         public bool Relation { get; set; }  // Bireyin ilişkisini ifade eder.
-        public Guid UserAuthId { get; set; }
     }
 }

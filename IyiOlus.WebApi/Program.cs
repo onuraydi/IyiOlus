@@ -3,6 +3,7 @@ using IyiOlus.Core;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.MiddleWares;
 using IyiOlus.Persistence;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApplicationServices();
 builder.Services.AddCoreServices(builder.Configuration);
 builder.Services.AddPersistanceServices(builder.Configuration);
+
+// Enum value'lerin gözükmesi için eklendi.
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 builder.Services.AddSwaggerGen(c =>
 {

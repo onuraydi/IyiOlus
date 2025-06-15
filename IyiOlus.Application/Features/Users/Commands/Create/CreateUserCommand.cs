@@ -4,11 +4,15 @@ using IyiOlus.Application.Features.Users.Dtos.Requests;
 using IyiOlus.Application.Features.Users.Dtos.Responses;
 using IyiOlus.Application.Features.Users.Rules;
 using IyiOlus.Application.Services.Repositories;
+using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,12 +27,16 @@ namespace IyiOlus.Application.Features.Users.Commands.Create
             private readonly IUserRepository _userRepository;
             private readonly IMapper _mapper;
             private readonly UserBusinessRules _userBusinessRules;
+            private readonly UserManager<ApplicationUser> _userManager;
+            private readonly IHttpContextAccessor _httpContextAccessor;
 
-            public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper, UserBusinessRules userBusinessRules)
+            public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper, UserBusinessRules userBusinessRules, IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> userManager)
             {
                 _userRepository = userRepository;
                 _mapper = mapper;
                 _userBusinessRules = userBusinessRules;
+                _httpContextAccessor = httpContextAccessor;
+                _userManager = userManager;
             }
 
             public async Task<CreatedUserResponse> Handle(CreateUserCommand command, CancellationToken cancellationToken)
@@ -39,8 +47,12 @@ namespace IyiOlus.Application.Features.Users.Commands.Create
                 _userBusinessRules.SurnameShort(command.Request.Surname);
                 _userBusinessRules.SurnameLong(command.Request.Surname);
 
+                var email = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+                var appUser = await _userManager.FindByEmailAsync(email);
+                var userId = appUser.Id;
+
                 var user = _mapper.Map<User>(command.Request);
-                user.ApplicationUserId = command.Request.UserAuthId;
+                user.ApplicationUserId = userId;
                 var createdUser = await _userRepository.AddAsync(user);
 
                 var response = _mapper.Map<CreatedUserResponse>(createdUser);
