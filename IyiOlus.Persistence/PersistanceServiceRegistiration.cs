@@ -33,6 +33,7 @@ namespace IyiOlus.Persistence
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmailVerificationRepository, EmailVerificationRepository>();
+            services.AddScoped<IExerciseRepository, ExerciseRepository>();
 
             services.AddIdentityCore<ApplicationUser>(opt =>
             {
