@@ -30,7 +30,7 @@ namespace IyiOlus.WebApi.Controllers
             return Ok(ressult);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Roles ="admin,user")]
         public async Task<IActionResult> Delete([FromRoute]Guid id)
         {
@@ -40,7 +40,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize("admin,user")]
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             var query = new GetByIdExerciseQuery { ExerciseId = id };

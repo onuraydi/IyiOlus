@@ -39,7 +39,6 @@ namespace IyiOlus.Application.Features.Exercises.Queries.GetListByUserId
                         index: request.pageIndex,
                         size: request.pageSize,
                         predicate: x => x.UserId == userId,
-                        include: x => x.Include(y => y.User),
                         cancellationToken: cancellationToken
                     );
 
