@@ -1,6 +1,7 @@
 ﻿using IyiOlus.Application.Features.Users.Commands.Create;
 using IyiOlus.Application.Features.Users.Commands.Delete;
 using IyiOlus.Application.Features.Users.Commands.Update;
+using IyiOlus.Application.Features.Users.Queries.GetAuthenticatedUser;
 using IyiOlus.Application.Features.Users.Queries.GetById;
 using IyiOlus.Application.Features.Users.Queries.GetList;
 using Microsoft.AspNetCore.Authorization;
@@ -51,6 +52,14 @@ namespace IyiOlus.WebApi.Controllers
         public async Task<IActionResult> GetList([FromQuery]GetListUserQuery getListUserQuery)
         {
             var result = await Mediator.Send(getListUserQuery);
+            return Ok(result);
+        }
+
+        [HttpGet("authenticated")]
+        [Authorize(Roles ="admin,user")]
+        public async Task<IActionResult> GetUser([FromQuery]GetAuthenticatedUserQuery getAuthenticatedUserQuery)
+        {
+            var result = await Mediator.Send(getAuthenticatedUserQuery);
             return Ok(result);
         }
     }

@@ -1,5 +1,7 @@
-﻿using IyiOlus.Application.Services.Repositories;
+﻿using Hangfire;
+using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Application.Services.Repositories.AuthRepositories;
+using IyiOlus.Core.CrossCuttingConcerns.BackgorundJobs.Hangfire;
 using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
 using IyiOlus.Persistence.Repositories;
@@ -25,6 +27,8 @@ namespace IyiOlus.Persistence
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddHangfire(config => config.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IDailyMoodRepository, DailyMoodRepository>();
             services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();
@@ -34,6 +38,10 @@ namespace IyiOlus.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmailVerificationRepository, EmailVerificationRepository>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
+
+            services.AddSingleton<NotificationJob>();
+            services.AddSingleton<NotificationScheduler>();
 
             services.AddIdentityCore<ApplicationUser>(opt =>
             {
@@ -51,6 +59,7 @@ namespace IyiOlus.Persistence
                 .AddEntityFrameworkStores<BaseDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddHangfireServer();
             return services;
         }
     }

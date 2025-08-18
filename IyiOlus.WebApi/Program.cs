@@ -1,3 +1,4 @@
+using Hangfire;
 using IyiOlus.Application;
 using IyiOlus.Core;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.MiddleWares;
@@ -73,7 +74,7 @@ app.UseHttpsRedirection();
 app.UseCustomExceptionMiddleWare();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseHangfireDashboard();
 app.MapControllers();
 
 app.Run();

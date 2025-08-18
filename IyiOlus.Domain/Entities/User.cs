@@ -24,5 +24,6 @@ namespace IyiOlus.Domain.Entities
         public virtual ICollection<Contact> Contacts { get; set; } = default!;
         public virtual ICollection<UserProfile> UserProfiles { get; set; } = default!;
         public virtual ICollection<Exercise> Exercises { get; set; } = default!;
+        public virtual ICollection<Notification> Notifications { get; set; } = default!;
     }
 }
