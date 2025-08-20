@@ -14,7 +14,7 @@ namespace IyiOlus.Application.Features.UserProfiles.Dtos.Responses
     {
         public Guid Id { get; set; }
         public Profile Profile { get; set; }  // buradaki profile enum'u algoritma dll'den geliyor
-        public Profile? OldProfile { get; set; } // kullanıcı yeni profile belirlediğinde eski profil buraya yazılacak
+        public List<Profile?> OldProfile { get; set; } = default!; // kullanıcı yeni profile belirlediğinde eski profil buraya yazılacak
         public bool State { get; set; }  // önceki profile göre iyileşme olup olmadığı
         public DateTime ProfileTestDate { get; set; }
         public DateTime CreatedDate { get; set; }

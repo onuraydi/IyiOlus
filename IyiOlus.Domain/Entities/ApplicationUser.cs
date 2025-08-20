@@ -13,6 +13,5 @@ namespace IyiOlus.Domain.Entities
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
         public virtual User User { get; set; } = default!;
-        public string FcmToken { get; set; } = default!; // Firebase Cloud Messaging için gerekli 
     }
 }

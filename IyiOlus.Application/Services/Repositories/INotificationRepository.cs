@@ -10,6 +10,6 @@ namespace IyiOlus.Application.Services.Repositories
 {
     public interface INotificationRepository:IAsyncRepository<Notification,Guid>
     {
-
+        Task<List<Notification>> GetPreferredTimeAsync(TimeOnly time, CancellationToken cancellationToken);
     }
 }

@@ -1,7 +1,8 @@
 ﻿using Hangfire;
+using IyiOlus.Application.Features.Notifications.Commands.Dispatch;
+using IyiOlus.Application.Hangfire;
 using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Application.Services.Repositories.AuthRepositories;
-using IyiOlus.Core.CrossCuttingConcerns.BackgorundJobs.Hangfire;
 using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
 using IyiOlus.Persistence.Repositories;
@@ -29,6 +30,11 @@ namespace IyiOlus.Persistence
 
             services.AddHangfire(config => config.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection")));
 
+            services.Configure<FcmOptions>(
+                configuration.GetSection("FcmOptions"));
+
+
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IDailyMoodRepository, DailyMoodRepository>();
             services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();
@@ -38,10 +44,16 @@ namespace IyiOlus.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmailVerificationRepository, EmailVerificationRepository>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            
             services.AddScoped<INotificationRepository, NotificationRepository>();
 
-            services.AddSingleton<NotificationJob>();
+            services.AddScoped<INotificationSenderRepository, NotificationSenderRepository>();
+            services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             services.AddSingleton<NotificationScheduler>();
+
+
+            services.AddHttpClient<INotificationSenderRepository, NotificationSenderRepository>();
+
 
             services.AddIdentityCore<ApplicationUser>(opt =>
             {

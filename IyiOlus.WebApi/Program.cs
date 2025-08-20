@@ -1,5 +1,6 @@
 using Hangfire;
 using IyiOlus.Application;
+using IyiOlus.Application.Hangfire;
 using IyiOlus.Core;
 using IyiOlus.Core.CrossCuttingConcerns.Exceptions.MiddleWares;
 using IyiOlus.Persistence;
@@ -60,7 +61,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -75,6 +75,10 @@ app.UseCustomExceptionMiddleWare();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHangfireDashboard();
+
+var scheduler = app.Services.GetRequiredService<NotificationScheduler>();
+scheduler.DispatchDueNotifications();
+
 app.MapControllers();
 
 app.Run();

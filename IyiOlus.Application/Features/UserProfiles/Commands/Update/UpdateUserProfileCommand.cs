@@ -60,11 +60,11 @@ namespace IyiOlus.Application.Features.UserProfiles.Commands.Update
                 _mapper.Map(command.Request, userProfile);
 
                 userProfile.UserId = userId;
-                userProfile.OldProfile = oldProfile;
+                userProfile.OldProfile.Add(oldProfile);
                 userProfile.Evaluations = evaluations;
                 userProfile.Profile = profile;
 
-                if(userProfile.OldProfile < userProfile.Profile)
+                if(userProfile.OldProfile.Last() < userProfile.Profile)
                 {
                     userProfile.State = true;
                 }
