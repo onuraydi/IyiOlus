@@ -256,8 +256,14 @@ namespace IyiOlus.Persistence.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("NotificationIsActive")
+                        .HasColumnType("bit");
+
                     b.Property<TimeOnly>("PreferedTime")
                         .HasColumnType("time");
+
+                    b.Property<int?>("PrefferedDayOfWeek")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");

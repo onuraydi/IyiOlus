@@ -13,6 +13,7 @@ namespace IyiOlus.Application.Features.Notifications.Commands.Dispatch
     public class DispatchUserNotificationsCommand:IRequest<Unit>
     {
         public TimeOnly currentTime { get; set; }
+        public DateTime currentDate { get; set; }
         public class DispatchUserNotificationsCommandHandler : IRequestHandler<DispatchUserNotificationsCommand, Unit>
         {
             private readonly INotificationRepository _notificationRepository;
@@ -26,13 +27,14 @@ namespace IyiOlus.Application.Features.Notifications.Commands.Dispatch
 
             public async Task<Unit> Handle(DispatchUserNotificationsCommand request, CancellationToken cancellationToken)
             {
-                var notifications = await _notificationRepository.GetPreferredTimeAsync(request.currentTime, cancellationToken);
+                var notifications = await _notificationRepository.GetPreferredTimeAsync(request.currentTime, request.currentDate, cancellationToken);
 
                 foreach (var notification in notifications)
                 {
                     var body = notification.notificationType switch
                     {
                         NotificationType.GünlükMod => $"{notification.User.Name}, bugün nasıl hissediyorsun?",
+                        NotificationType.Profilleme => $"{notification.User.Name}, Profilleme yapmanın zamanı geldi!",
                         _ => "Yeni bildiriminiz var!",
                     };
 
@@ -51,7 +53,10 @@ namespace IyiOlus.Application.Features.Notifications.Commands.Dispatch
 
                     try
                     {
-                        await _notificationSenderRepository.SendAsync(payload, cancellationToken);
+                        if (notification.NotificationIsActive == true)
+                        {
+                            await _notificationSenderRepository.SendAsync(payload, cancellationToken);
+                        }
                     }
                     catch (Exception exception)
                     {

@@ -12,6 +12,8 @@ namespace IyiOlus.Application.Features.Notifications.Dtos.Requests
     {
         public Guid Id { get; set; }
         public NotificationType notificationType { get; set; }
+        public DayOfWeek? PrefferedDayOfWeek { get; set; }
+        public bool NotificationIsActive { get; set; } = true;
         public TimeOnly PreferedTime { get; set; }
     }
 }

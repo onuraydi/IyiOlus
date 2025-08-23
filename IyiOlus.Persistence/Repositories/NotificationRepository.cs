@@ -1,6 +1,7 @@
 ﻿using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Core.Repositories;
 using IyiOlus.Domain.Entities;
+using IyiOlus.Domain.Enums;
 using IyiOlus.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,12 +18,14 @@ namespace IyiOlus.Persistence.Repositories
         {
         }
 
-        public async Task<List<Notification>> GetPreferredTimeAsync(TimeOnly time, CancellationToken cancellationToken)
+        public async Task<List<Notification>> GetPreferredTimeAsync(TimeOnly time, DateTime dateTime, CancellationToken cancellationToken)
         {
             return await context.Notifications
                 .Include(n => n.User)
-                .Where(x => x.PreferedTime.Hour == time.Hour && x.PreferedTime.Minute == time.Minute)
-                .ToListAsync(cancellationToken);
+                .Where(x => (x.notificationType == NotificationType.GünlükMod && x.PreferedTime.Hour == time.Hour && x.PreferedTime.Minute == time.Minute)
+                ||
+                (x.notificationType == NotificationType.Profilleme && x.PrefferedDayOfWeek == dateTime.DayOfWeek && x.PreferedTime.Hour == time.Hour && x.PreferedTime.Minute == time.Minute)
+                ).ToListAsync(cancellationToken);
         }
     }
 }

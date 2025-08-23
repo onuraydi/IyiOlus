@@ -10,8 +10,10 @@ namespace IyiOlus.Domain.Entities
 {
     public class Notification:Entity<Guid>
     {
+        public bool NotificationIsActive { get; set; }
         public NotificationType notificationType { get; set; }
         public TimeOnly PreferedTime { get; set; }
+        public DayOfWeek? PrefferedDayOfWeek { get; set; }
         public virtual User User { get; set; } = default!;
         public Guid UserId { get; set; }
     }
