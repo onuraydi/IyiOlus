@@ -66,15 +66,15 @@ namespace IyiOlus.Application.Features.Users.Commands.Create
                 {
                     notificationType = NotificationType.GünlükMod,
                     NotificationIsActive = true,
-                    PreferedTime = new TimeOnly(9, 0)
+                    PreferredTime = new TimeOnly(9, 0)
                 });
 
                 user.Notifications.Add(new Notification
                 {
                     notificationType = NotificationType.Profilleme,
                     NotificationIsActive = true,
-                    PrefferedDayOfWeek = DayOfWeek.Sunday,
-                    PreferedTime = new TimeOnly(20, 0)
+                    PreferredDayOfWeek = DayOfWeek.Sunday,
+                    PreferredTime = new TimeOnly(20, 0)
                 });
 
 

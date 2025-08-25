@@ -14,7 +14,7 @@ namespace IyiOlus.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Notification> builder)
         {
             builder.Property(x => x.notificationType).IsRequired();
-            builder.Property(y => y.PreferedTime).IsRequired();
+            builder.Property(y => y.PreferredTime).IsRequired();
         }
     }
 }

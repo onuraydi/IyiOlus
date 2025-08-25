@@ -22,9 +22,9 @@ namespace IyiOlus.Persistence.Repositories
         {
             return await context.Notifications
                 .Include(n => n.User)
-                .Where(x => (x.notificationType == NotificationType.GünlükMod && x.PreferedTime.Hour == time.Hour && x.PreferedTime.Minute == time.Minute)
+                .Where(x => (x.notificationType == NotificationType.GünlükMod && x.PreferredTime.Hour == time.Hour && x.PreferredTime.Minute == time.Minute)
                 ||
-                (x.notificationType == NotificationType.Profilleme && x.PrefferedDayOfWeek == dateTime.DayOfWeek && x.PreferedTime.Hour == time.Hour && x.PreferedTime.Minute == time.Minute)
+                (x.notificationType == NotificationType.Profilleme && x.PreferredDayOfWeek == dateTime.DayOfWeek && x.PreferredTime.Hour == time.Hour && x.PreferredTime.Minute == time.Minute)
                 ).ToListAsync(cancellationToken);
         }
     }
