@@ -79,6 +79,12 @@ app.UseHangfireDashboard();
 var scheduler = app.Services.GetRequiredService<NotificationScheduler>();
 scheduler.DispatchDueNotifications();
 
+RecurringJob.AddOrUpdate(
+    "dispatch-notifications",
+    () => app.Services.GetRequiredService<NotificationScheduler>().DispatchDueNotifications(),
+    Cron.Minutely
+);
+
 app.MapControllers();
 
 app.Run();
