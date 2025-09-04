@@ -12,7 +12,5 @@ namespace IyiOlus.Application.Features.ProfileTypes.Dtos.Responses
     {
         public Guid Id { get; set; }
         public PT Type { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
     }
 }

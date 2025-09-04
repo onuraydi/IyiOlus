@@ -14,7 +14,7 @@ namespace IyiOlus.WebApi.Controllers
     public class ContactsController : BaseController
     {
         [HttpPost]
-        //[Authorize(Roles ="user")]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> Create([FromBody]CreateContactCommand createContactCommand)
         {
             var result = await Mediator.Send(createContactCommand);
@@ -22,7 +22,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "admin,user")]
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> Delete([FromRoute]Guid id)
         {
             var command = new DeleteContactCommand { id = id };
@@ -31,7 +31,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "admin,user")]
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             var query = new GetByIdContactQuery { id = id };
@@ -40,7 +40,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetList([FromQuery] GetListContactQuery getListContactQuery)
         {
             var result = await Mediator.Send(getListContactQuery);
@@ -48,7 +48,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("get")]
-        //[Authorize(Roles ="user")]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> Get([FromQuery] GetListByUserIdContactQuery getListByUserIdContactQuery)
         {
             var result = await Mediator.Send(getListByUserIdContactQuery);

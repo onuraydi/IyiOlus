@@ -13,7 +13,7 @@ namespace IyiOlus.Application.Features.Notifications.Commands.Dispatch
     public class DispatchUserNotificationsCommand:IRequest<Unit>
     {
         public TimeOnly currentTime { get; set; }
-        public DateTime currentDate { get; set; }
+        public DateTime currentDate { get; set; } = DateTime.Now;
         public class DispatchUserNotificationsCommandHandler : IRequestHandler<DispatchUserNotificationsCommand, Unit>
         {
             private readonly INotificationRepository _notificationRepository;
