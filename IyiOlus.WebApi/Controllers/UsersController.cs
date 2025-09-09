@@ -1,10 +1,13 @@
 ﻿using IyiOlus.Application.Features.Users.Commands.Create;
 using IyiOlus.Application.Features.Users.Commands.Delete;
 using IyiOlus.Application.Features.Users.Commands.Update;
+using IyiOlus.Application.Features.Users.Commands.UpdateUserToken;
+using IyiOlus.Application.Features.Users.Queries.GetAuthenticatedUser;
 using IyiOlus.Application.Features.Users.Queries.GetById;
 using IyiOlus.Application.Features.Users.Queries.GetList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace IyiOlus.WebApi.Controllers
 {
@@ -13,8 +16,8 @@ namespace IyiOlus.WebApi.Controllers
     public class UsersController : BaseController
     {
         [HttpPost]
-        [Authorize(Roles ="user,admin")]
-        public async Task<IActionResult> Create([FromBody]CreateUserCommand createUserCommand)
+        [Authorize(Roles = "user,admin")]
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand createUserCommand)
         {
             var result = await Mediator.Send(createUserCommand);
             return Ok(result);
@@ -22,15 +25,15 @@ namespace IyiOlus.WebApi.Controllers
 
         [HttpPut]
         [Authorize(Roles = "user,admin")]
-        public async Task<IActionResult> Update([FromBody]UpdateUserCommand updateUserCommand)
+        public async Task<IActionResult> Update([FromBody] UpdateUserCommand updateUserCommand)
         {
             var result = await Mediator.Send(updateUserCommand);
             return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles ="admin")]
-        public async Task<IActionResult> Delete([FromRoute]Guid id)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new DeleteUserCommand { UserId = id };
             var result = await Mediator.Send(command);
@@ -38,8 +41,8 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles ="admin, user")]
-        public async Task<IActionResult> GetById([FromRoute]Guid id)
+        [Authorize(Roles = "admin, user")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var query = new GetByIdUserQuery { UserId = id };
             var result = await Mediator.Send(query);
@@ -47,10 +50,25 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="admin")]
-        public async Task<IActionResult> GetList([FromQuery]GetListUserQuery getListUserQuery)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> GetList([FromQuery] GetListUserQuery getListUserQuery)
         {
             var result = await Mediator.Send(getListUserQuery);
+            return Ok(result);
+        }
+
+        [HttpGet("authenticated")]
+        [Authorize(Roles = "admin,user")]
+        public async Task<IActionResult> GetUser([FromQuery] GetAuthenticatedUserQuery getAuthenticatedUserQuery)
+        {
+            var result = await Mediator.Send(getAuthenticatedUserQuery);
+            return Ok(result);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateToken([FromBody] UpdateFcmTokenCommand updateFcmTokenCommand)
+        {
+            var result = await Mediator.Send(updateFcmTokenCommand);
             return Ok(result);
         }
     }

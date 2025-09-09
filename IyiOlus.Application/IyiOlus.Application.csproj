@@ -38,6 +38,7 @@
     <Folder Include="Features\Authentications\Verification\Rules\" />
     <Folder Include="Features\Authentications\Verification\Profiles\" />
     <Folder Include="Features\Authentications\Verification\Queries\" />
+    <Folder Include="Features\Notifications\Commands\SendNotification\" />
   </ItemGroup>
 
 </Project>

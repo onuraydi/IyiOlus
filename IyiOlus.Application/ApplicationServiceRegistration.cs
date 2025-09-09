@@ -7,6 +7,7 @@ using IyiOlus.Application.Features.Authentications.Revoke.Rules;
 using IyiOlus.Application.Features.Contacts.Rules;
 using IyiOlus.Application.Features.DailyMoods.Rules;
 using IyiOlus.Application.Features.Exercises.Rules;
+using IyiOlus.Application.Features.Notifications.Rules;
 using IyiOlus.Application.Features.ProfileTypes.Rules;
 using IyiOlus.Application.Features.Questions.Rules;
 using IyiOlus.Application.Features.Settings.Rules;
@@ -58,6 +59,7 @@ namespace IyiOlus.Application
             services.AddScoped<RefreshTokenBusinessRules>();
             services.AddScoped<RevokeBusinessRules>();
             services.AddScoped<ExerciseBusinesssRules>();
+            services.AddScoped<NotificationBusinessRules>();
 
             return services;
         }

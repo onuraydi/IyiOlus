@@ -7,11 +7,6 @@ using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IyiOlus.Application.Features.Exercises.Commands.Create
 {

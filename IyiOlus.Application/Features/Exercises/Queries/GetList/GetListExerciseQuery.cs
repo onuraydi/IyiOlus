@@ -35,7 +35,6 @@ namespace IyiOlus.Application.Features.Exercises.Queries.GetList
                 var exercise = await _exerciseRepository.GetListAsync(
                         index: request.pageIndex,
                         size: request.pageSize,
-                        include: x => x.Include(y => y.User),
                         cancellationToken: cancellationToken
                     );
 

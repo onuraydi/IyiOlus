@@ -34,7 +34,6 @@ namespace IyiOlus.Application.Features.Exercises.Queries.GetById
 
                 var exercise = await _exerciseRepository.GetAsync(
                     predicate: x => x.Id == command.ExerciseId,
-                    include: x => x.Include(y => y.User),
                     cancellationToken: cancellationToken
                     );
 

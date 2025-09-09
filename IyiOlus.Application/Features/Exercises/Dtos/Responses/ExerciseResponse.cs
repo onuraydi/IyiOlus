@@ -13,6 +13,6 @@ namespace IyiOlus.Application.Features.Exercises.Dtos.Responses
         public string Name { get; set; } = default!;
         public string Detail { get; set; } = default!;
         public int Progress { get; set; }
-        public virtual User User { get; set; } = default!;
+        //public virtual User User { get; set; } = default!;
     }
 }

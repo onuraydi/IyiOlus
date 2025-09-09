@@ -21,5 +21,6 @@ namespace IyiOlus.Application.Features.Users.Dtos.Responses
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public virtual RegisterResponse RegisterResponse { get; set; } = default!;
+        public string FcmToken { get; set; } = default!;
     }
 }

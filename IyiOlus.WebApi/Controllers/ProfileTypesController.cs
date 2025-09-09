@@ -40,7 +40,7 @@ namespace IyiOlus.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "admin,user")] 
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetById([FromRoute]Guid id)
         {
             var query = new GetByIdProfileTypeQuery { ProfileTypeId = id };

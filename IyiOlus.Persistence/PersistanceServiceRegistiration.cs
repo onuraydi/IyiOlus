@@ -1,4 +1,7 @@
-﻿using IyiOlus.Application.Services.Repositories;
+﻿using Hangfire;
+using IyiOlus.Application.Features.Notifications.Commands.Dispatch;
+using IyiOlus.Application.Hangfire;
+using IyiOlus.Application.Services.Repositories;
 using IyiOlus.Application.Services.Repositories.AuthRepositories;
 using IyiOlus.Domain.Entities;
 using IyiOlus.Persistence.Contexts;
@@ -25,6 +28,13 @@ namespace IyiOlus.Persistence
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddHangfire(config => config.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection")));
+
+            services.Configure<FcmOptions>(
+                configuration.GetSection("FcmOptions"));
+
+
+
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IDailyMoodRepository, DailyMoodRepository>();
             services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();
@@ -34,6 +44,16 @@ namespace IyiOlus.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmailVerificationRepository, EmailVerificationRepository>();
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            
+            services.AddScoped<INotificationRepository, NotificationRepository>();
+
+            services.AddScoped<INotificationSenderRepository, NotificationSenderRepository>();
+            services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            services.AddSingleton<NotificationScheduler>();
+
+
+            services.AddHttpClient<INotificationSenderRepository, NotificationSenderRepository>();
+
 
             services.AddIdentityCore<ApplicationUser>(opt =>
             {
@@ -51,6 +71,7 @@ namespace IyiOlus.Persistence
                 .AddEntityFrameworkStores<BaseDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddHangfireServer();
             return services;
         }
     }

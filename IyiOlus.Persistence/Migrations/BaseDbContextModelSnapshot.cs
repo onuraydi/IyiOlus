@@ -244,6 +244,43 @@ namespace IyiOlus.Persistence.Migrations
                     b.ToTable("Exercises");
                 });
 
+            modelBuilder.Entity("IyiOlus.Domain.Entities.Notification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("NotificationIsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("PreferredDayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("PreferredTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("notificationType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("IyiOlus.Domain.Entities.ProfileType", b =>
                 {
                     b.Property<Guid>("Id")
@@ -383,6 +420,10 @@ namespace IyiOlus.Persistence.Migrations
                     b.Property<int>("EducationLevel")
                         .HasColumnType("int");
 
+                    b.Property<string>("FcmToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
@@ -429,8 +470,9 @@ namespace IyiOlus.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OldProfile")
-                        .HasColumnType("int");
+                    b.PrimitiveCollection<string>("OldProfile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Profile")
                         .HasColumnType("int");
@@ -599,6 +641,17 @@ namespace IyiOlus.Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("IyiOlus.Domain.Entities.Notification", b =>
+                {
+                    b.HasOne("IyiOlus.Domain.Entities.User", "User")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("IyiOlus.Domain.Entities.Question", b =>
                 {
                     b.HasOne("IyiOlus.Domain.Entities.ProfileType", "ProfileType")
@@ -722,6 +775,8 @@ namespace IyiOlus.Persistence.Migrations
                     b.Navigation("DailyMoods");
 
                     b.Navigation("Exercises");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("Setting")
                         .IsRequired();

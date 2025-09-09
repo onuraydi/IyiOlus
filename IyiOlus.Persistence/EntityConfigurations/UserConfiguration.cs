@@ -33,6 +33,11 @@ namespace IyiOlus.Persistence.EntityConfigurations
                 .WithOne(u => u.User)
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Notifications)
+                .WithOne(u => u.User)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace IyiOlus.Application.Features.Questions.Dtos.Responses
         public string ProfileQuestion { get; set; } = default!;
         public QuestionTypes QuestionType { get; set; }
         public virtual ProfileTypeResponse ProfileTypeResponse { get; set; } = default!;
+        public Guid ProfileTypeId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
     }

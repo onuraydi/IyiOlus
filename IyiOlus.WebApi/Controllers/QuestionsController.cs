@@ -15,7 +15,7 @@ namespace IyiOlus.WebApi.Controllers
     public class QuestionsController : BaseController
     {
         [HttpPost]
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([FromBody]CreateQuestionCommand createQuestionCommand)
         {
             var result = await Mediator.Send(createQuestionCommand);
