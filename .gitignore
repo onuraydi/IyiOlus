@@ -53,3 +53,7 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 /.vs/IyiOlus
+/IyiOlus.Application/Mail/Repositories/MailSenderManager.cs
+/IyiOlus.Persistence/iyiolus-a3f84-firebase-adminsdk-fbsvc-3ad4c4684d.json
+/IyiOlus.WebApi/appsettings.json
+/IyiOlus.WebApi/Dockerfile
